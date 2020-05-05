@@ -26,7 +26,6 @@
 ### 機能一覧
 https://docs.google.com/spreadsheets/d/1FNeL7PH444SfVn-niKgZUrGc0uGBbLsyifJloyEnUcI/edit#gid=0
 
-https://docs.google.com/spreadsheets/d/1hkePXlCnW64w40PcPwxIrEqgXv-w87Z05sVFtuUTQMU/edit#gid=0
 
 
 
