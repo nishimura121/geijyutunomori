@@ -4,12 +4,25 @@
     <title>Geijyutunomori</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+
+<body class="d-flex flex-column" style="min-height: 100vh">
+
+    <header class="sticky-top">
+
+          <% if request.path.include?('admin') %>
+            <%= render 'layouts/admin',admin: @admin %>
+          <% else %>
+            <%= render 'layouts/user',user: @user %>
+          <% end %>
+    </header>
+    <div class="container mt-5 mb-auto">
+
+      <%= yield %>
+    </div>
+
 </html>

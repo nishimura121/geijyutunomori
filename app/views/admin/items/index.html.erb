@@ -1,0 +1,24 @@
+<h1>投稿作品一覧画面</h1>
+
+
+<table class="table table=striped">
+           <thead>
+             <tr>
+               <th class="col-md-2">ID</th>
+              <th class="col-md-5">投稿画像</th>
+              <th class="col-md-3">商品名</th>
+              <th class="col-md-1">ジャンル</th>
+            </tr>
+          </thead>
+          <% @items.each do |items| %>
+            <tbody>
+              <tr>
+              	<td><%= items.id %></td>
+                <td><%= attachment_image_tag items style: "width: 50px; height: 50px;"  %></td>
+                <td> <%= link_to items.name,admin_item_path(items) %> </td>
+                <td> <%= genres.id %> </td>
+              </tr>
+          </tbody>
+          <% end%>
+        </table>
+<%= link_to 'コメント一覧',admin_comment_path %>

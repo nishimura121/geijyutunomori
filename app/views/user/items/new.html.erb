@@ -1,0 +1,47 @@
+<h1>投稿画面</h1>
+
+<div class="row">
+  <div class="col-xl-7">
+    <div style="min-height: 8vh;">
+      <h3 class="mb-4">商品新規登録</h3>
+    </div>
+
+    <%= form_for(@item, url: users_items_path, method: :post) do |f| %>
+    <div class="form-row mb-4">
+      <div class="col">
+        <label>作品画像</label>
+      </div>
+      <%= f.attachment_field :image, class:"col-10" %>
+    </div>
+
+    <div class="form-row mb-4">
+      <div class="col">
+        <%= f.label :name, "商品名" %>
+      </div>
+      <%= f.text_field :name, class:"col-10" %>
+    </div>
+
+
+    <div class="form-row mb-4">
+      <div class="col">
+        <%= f.label :description, "商品説明" %>
+      </div>
+      <%= f.text_area :description, class:"col-10" %>
+    </div>
+
+
+    <div class="form-row mb-4">
+      <div class="col-2">
+        <%= f.label :genre_id, "ジャンル" %>
+      </div>
+      <%= f.collection_select(:name, @genres, :id, :name, class:"col-5") %>
+    </div>
+
+
+
+    <div class="form-row flex-row-reverse">
+      <%= f.submit "投稿する", class:"btn btn-secondary" %>
+    </div>
+
+    <% end %>
+

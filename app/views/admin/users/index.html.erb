@@ -1,0 +1,21 @@
+<h1>会員一覧画面</h1>
+<table class="table table=striped">
+           <thead>
+             <tr>
+               <th class="col-md-2">ID</th>
+              <th class="col-md-5">名前</th>
+              <th class="col-md-3">メールアドレス</th>
+              <th class="col-md-1">会員ステータス</th>
+            </tr>
+          </thead>
+          <% @users.each do |users| %>
+            <tbody>
+              <tr>
+              	<td><%= users.id %></td>
+                <td><%= user.name  %></td>
+                <td> <%= user.email %> </td>
+                <td> <%= user.is_cancel ? :'退会済':'有効' %></td>
+              </tr>
+          </tbody>
+          <% end%>
+        </table>

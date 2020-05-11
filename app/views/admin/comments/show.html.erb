@@ -1,0 +1,23 @@
+<h1>コメント一覧</h1>
+
+<table class="table table=striped">
+           <thead>
+             <tr>
+               <th class="col-md-2">投稿日時</th>
+              <th class="col-md-5">名前</th>
+              <th class="col-md-3">コメント内容</th>
+              <th class="col-md-1"></th>
+            </tr>
+          </thead>
+          <% @items.comments.each do |c| %>
+            <tbody>
+              <tr>
+              	<td><%= user.created_at %></td>
+                <td><%= user_id.name  %></td>
+                <td> <%= items.comments.id %> </td>
+                <td> <%= genres.id %> </td>
+                <td> <%= link_to "Destroy",comment_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm" %> </td>
+              </tr>
+          </tbody>
+          <% end%>
+        </table>
