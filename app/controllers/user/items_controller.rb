@@ -1,10 +1,10 @@
 class User::ItemsController < ApplicationController
   def index
-    @items =Item.all
+    @item =Item.all
   end
 
   def show
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def edit
@@ -24,7 +24,8 @@ class User::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user_id = current_user.id
-    @genres = Genre.id
+    @genre = Genre.find(item_params[:name])
+    @item.genre_id = @genre.id
     if @item.save
       redirect_to users_item_path(@item)
     else

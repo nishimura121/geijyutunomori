@@ -34,7 +34,7 @@
       <div class="col-2">
         <%= f.label :genre_id, "ジャンル" %>
       </div>
-      <%= f.collection_select(:name, @genres, :id, :name, class:"col-5") %>
+      <%= f.collection_select(:name, Genre.all, :id, :name) %>
     </div>
 
 
