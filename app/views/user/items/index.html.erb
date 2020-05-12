@@ -1,3 +1,24 @@
 <h1>作品一覧</h1>
 
-<%= link_to'投稿する',new_users_item_path %>
+
+      <h3 class="mb-4">作品一覧</h3>
+      <div style="width: 100%;">
+        <%= link_to '投稿する',new_users_item_path, class:"ml-3" %>
+      </div>
+
+
+    <table class = "table table-striped">
+      <% @items.each do | item | %>
+        <tr>
+          <td><%= attachment_image_tag item, size:"200x150" %></td>
+          <td><%= link_to item.name, users_item_path(item) %></td>
+          <td><%= item.description %></td>
+        </tr>
+      <% end %>
+    </table>
+
+
+
+
+
+
