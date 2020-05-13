@@ -1,15 +1,13 @@
 
 <header class="navbar navbar-inverse">
-      <div class="container container-fluid">
-        <div class="nav navbar-nav navbar-left">
-          <font size="4" color=#FFFFFF  >芸術の森</font>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? %>
 
+          <% if user_signed_in? %>
+          <%= link_to " 芸術の森", new_users_path, class: "glyphicon glyphicon-user" %>
+            <li> <%= link_to " 投稿する", new_users_item_path, class: "glyphicon glyphicon-user" %> </li>
             <li> <%= link_to " マイページ", users_path, class: "glyphicon glyphicon-user" %> </li>
             <li> <%= link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %> </li>
           <% else %>
+          <%= link_to " 芸術の森", new_user_session_path, class: "glyphicon glyphicon-user" %>
             <li> <%= link_to " 新規登録", '/users/sign_up', class: "glyphicon glyphicon-home" %> </li>
             <li> <%= link_to " login", new_user_session_path, class: "glyphicon glyphicon-log-in" %> </li>
           <% end %>
