@@ -1,12 +1,36 @@
 <h1>投稿作品編集</h1>
-<% @item.each do |item| %>
-<%= attachment_image_tag item,:image %>
-<%= item.name %>
-<%= item.description %>
-<%= item.name %>
-<% end %>
-
-
+<%= form_for(@item , url: item_path(@item)) do |f| %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= attachment_image_tag @item, :image %>
+          <%= f.attachment_field :image, class:"mt-4" %>
+        </div>
+        <div class="col-md-8">
+          <table class="table">
+            <tr>
+              <th>
+                <%= f.label :name, "作品名" %>
+              </th>
+              <td>
+                <%= f.text_field :name, value: "#{@item.name}", class:"col" %>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <%= f.label :description, "作品説明" %>
+              </th>
+              <td>
+                <%= f.text_area :description,  value: "#{@item.description}", class:"col" %>
+              </td>
+            </tr>
+          </table>
+          <%= f.submit "変更を保存" %>
+        </div>
+      </div>
+    <% end %>
+    <p>
+<%= link_to "削除する",item_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm" %>
+</p>
 
 
 

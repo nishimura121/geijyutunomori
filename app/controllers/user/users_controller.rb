@@ -1,8 +1,10 @@
 class User::UsersController < ApplicationController
   def show
-    # binding.pry
-  	@user = User.find_by(params[:user_id])
-  	@item = Item.where(user_id: user_id)
+  	@user = User.find(params[:id])
+    @items = @user.items
+  end
+
+  def index
   end
 
   def new

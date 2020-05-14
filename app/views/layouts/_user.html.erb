@@ -1,16 +1,19 @@
 
 <header class="navbar navbar-inverse">
 
-          <% if user_signed_in? %>
+<% if user_signed_in? %>
           <%= link_to " 芸術の森", new_user_path, class: "glyphicon glyphicon-user" %>
-            <li> <%= link_to " 投稿する", new_user_item_path(@user), class: "glyphicon glyphicon-user" %> </li>
-            <li> <%= link_to " マイページ", user_path(@user), class: "glyphicon glyphicon-user" %> </li>
+            <li> <%= link_to " 投稿する", new_item_path, class: "glyphicon glyphicon-user" %> </li>
+            <li> <%= link_to " マイページ", user_path(current_user), class: "glyphicon glyphicon-user" %> </li>
             <li> <%= link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %> </li>
           <% else %>
+
+
           <%= link_to " 芸術の森", new_user_session_path, class: "glyphicon glyphicon-user" %>
             <li> <%= link_to " 新規登録", '/users/sign_up', class: "glyphicon glyphicon-home" %> </li>
             <li> <%= link_to " login", new_user_session_path, class: "glyphicon glyphicon-log-in" %> </li>
-          <% end %>
+
+<% end %>
 </ul>
       </div>
     </header>

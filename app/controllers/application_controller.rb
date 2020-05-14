@@ -17,7 +17,7 @@ private
       if resource_or_scope.class == Admin
         admin_root_path
       else
-        new_users_path
+        new_user_path
       end
     end
 

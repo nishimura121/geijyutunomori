@@ -18,7 +18,7 @@
             </tr>
             <tr>
             <th>投稿者</th>
-            <th><%=link_to @item.user.name,users_path(@user) %></th>
+            <th><%=link_to @item.user.name,user_path %></th>
             </tr>
 
               <tr>
@@ -27,7 +27,7 @@
             </tr>
 
 
-           <%= form_for @comment,url:users_item_comments_path(@item) do |f| %>
+           <%= form_for @comment,url:item_comments_path(@item) do |f| %>
               <% if user_signed_in? %>
                   <%= f.text_field :content %>
                   <%= f.submit 'レビューする' %>

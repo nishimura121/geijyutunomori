@@ -13,12 +13,23 @@ class User::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to user_path(current_user)
+    else
+      render action: :edit
+    end
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    if @item.destroy
+      redirect_to user_path(current_user)
+    end
   end
 
   def new
@@ -30,7 +41,7 @@ class User::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user_id = current_user.id
     if @item.save
-      redirect_to users_item_path(@item)
+      redirect_to new_item_path
     else
       render action: :new
     end

@@ -4,7 +4,7 @@
 
       <h3 class="mb-4">作品一覧</h3>
       <div style="width: 100%;">
-        <%= link_to '投稿する',new_users_item_path, class:"ml-3" %>
+        <%= link_to '投稿する',new_item_path, class:"ml-3" %>
       </div>
 
 
@@ -12,7 +12,7 @@
       <% @item.each do | item | %>
         <tr>
           <td><%= attachment_image_tag item,:image %></td>
-          <td><%= link_to item.name, users_item_path(item) %></td>
+          <td><%= link_to item.name, item_path(item) %></td>
           <td><%= item.description %></td>
         </tr>
         <% end %>
