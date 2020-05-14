@@ -3,41 +3,29 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<%= f.label :name,"名前" %>
+<%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control" %><br />
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+<%= f.label :age,"年齢" %>
+<%= f.text_field :age, autofocus: true, autocomplete: "age", class:"form-control" %><br />
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+<%= f.label :address, "住所" %>
+<%= f.text_field :address, autofocus: true, autocomplete: "address", class:"form-control" %><br />
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+<%= f.label :hp_address, "HP" %>
+<%= f.text_field :hp_address, autofocus: true, autocomplete: "hp_address", class:"form-control" %><br />
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+<%= f.label :sns_address, "SNS" %>
+<%= f.text_field :sns_address, autofocus: true, autocomplete: "sns_address", class:"form-control" %><br />
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<%= f.label :self_introduction, "自己紹介" %>
+<%= f.text_field :self_introduction, autofocus: true, autocomplete: "self_introduction", class:"form-control" %><br />
+
+<%= f.label :email %>
+<%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
+
+<%= f.submit "編集内容を保存する" %>
+
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+<p><%= button_to "退会する", cancel_users_path, method: :get, class:"btn btn-secondary px-3 badge-pill" %></p>

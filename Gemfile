@@ -68,4 +68,4 @@ gem 'bootstrap'
 gem 'kaminari'
 gem 'jquery-rails'
 gem 'pry-rails'
-
+gem 'impressionist', '~>1.6.1'

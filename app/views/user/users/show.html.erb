@@ -1,3 +1,63 @@
 マイページ
 
+<table class="table">
+          <tbody>
+            <tr>
+              <th>名前</th>
+              <th><%=@user.name %></th>
+            </tr>
+            <tr>
+              <th>年齢</th>
+              <th><%=@user.age %></th>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <th><%=@user.address %></th>
+            </tr>
+            <tr>
+            <th>HP</th>
+            <th><%=@user.hp_address %></th>
+            </tr>
+
+              <tr>
+              <th>SNS</th>
+              <th><%=@user.sns_address %></th>
+            </tr>
+             <tr>
+              <th>自己紹介</th>
+              <th><%=@user.self_introduction %></th>
+            </tr>
+
+           </tbody>
+</table>
+
+<% if user =! current_user.id %>
+<p>
+<%=link_to 'プロフィール編集',edit_user_registration_path %>
+</p>
+<% end %>
+
+
+<h3>投稿作品一覧</h3>
+<% if @item.present? %>
+<% @item.each do |item| %>
+<%= link_to users_item_path(item) do %>
+<%= attachment_image_tag item,:image %>
+<% end %>
+<%= link_to item.name,users_item_path(item) %>
+
+<%= link_to '投稿作品編集',edit_users_item_path(item) %>
+<% end %>
+
+<% else %>
+<p>投稿作品はありません</p>
+<% end %>
+
+
+
+
+
+
+
+
 

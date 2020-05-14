@@ -1,2 +1,15 @@
-<h1>作品編集</h1>
-<p>Find me in app/views/user/items/edit.html.erb</p>
+<h1>投稿作品編集</h1>
+<% @item.each do |item| %>
+<%= attachment_image_tag item,:image %>
+<%= item.name %>
+<%= item.description %>
+<%= item.name %>
+<% end %>
+
+
+
+
+
+
+
+

@@ -13,9 +13,30 @@
               <th><%=@item.description %></th>
             </tr>
             <tr>
-              <th>作品日時</th>
+              <th>投稿日時</th>
               <th><%= @item.created_at.strftime('%Y/%m/%d %H:%M') %></th>
             </tr>
+            <tr>
+            <th>投稿者</th>
+            <th><%=link_to @item.user.name,users_path(@user) %></th>
+            </tr>
+
+              <tr>
+              <th>視聴者数</th>
+              <th><%= @item.impressionist_count %></th>
+            </tr>
+
+
+           <%= form_for @comment,url:users_item_comments_path(@item) do |f| %>
+              <% if user_signed_in? %>
+                  <%= f.text_field :content %>
+                  <%= f.submit 'レビューする' %>
+                </div>
+              <% else %>
+                レビューを投稿するには<%= link_to "サインイン", new_user_session_path %>してください。
+              <% end %>
+            </div>
+            <% end %>
 
 
           </tbody>

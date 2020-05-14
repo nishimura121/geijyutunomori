@@ -11,14 +11,14 @@ Rails.application.routes.draw do
   end
 
   scope module: :user do
-  	resource :users , only: [:show, :new] do
+  	resources :users , only: [:show, :new] do
       member do
         patch'/' => 'users#destroy', as:'destroy'
         get 'cancel'
       end
     resources :items, only: [:index, :show, :edit, :update, :destroy ,:create ,:new] do
-      resources :comments, only: [:create, :new]
-     end
+      resource :comments, only: [:create]
+      end
     end
   end
 

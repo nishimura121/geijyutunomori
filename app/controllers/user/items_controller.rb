@@ -1,10 +1,15 @@
 class User::ItemsController < ApplicationController
+  impressionist :actions=> [:show]
+
   def index
     @item =Item.all
   end
 
   def show
     @item = Item.find(params[:id])
+    @comment = Comment.new
+    @comments = @item.comments
+    impressionist(@item)
   end
 
   def edit
@@ -35,4 +40,5 @@ class User::ItemsController < ApplicationController
    def item_params
     params.require(:item).permit(:name, :description, :image, :genre_id)
    end
+
 end
