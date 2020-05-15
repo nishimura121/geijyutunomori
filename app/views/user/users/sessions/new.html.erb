@@ -1,6 +1,8 @@
-
+<div class="row" style="background-color: rgba(150,150,150,0.3);border-radius: .5rem;" >
+  <div class= "col-xl" style="background-color: #fff;border:2px solid rgba(150,150,150,0.3); border-radius: .5rem 0 0 .5rem;">
+    <div style="min-height: 8vh;">
       <h3 class="mb-3 mt-3">ログイン</h3>
-
+    </div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-row">
@@ -27,7 +29,7 @@
       <h3 class="mb-3 mt-3">アカウントをお持ちでない方</h3>
 
     <div>
-  　  <p><%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。</p>
+    <p><%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。</p>
     </div>
 
   </div>
