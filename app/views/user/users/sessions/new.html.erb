@@ -1,12 +1,2 @@
-<h3>ログイン</h3>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <%= f.label :email, "メールアドレス" %></br>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス..", class:"form-control" %>
-      <%= f.label :password, "パスワード" %></br>
-      <%= f.password_field :password, autocomplete: "current-password", placeholder:"パスワード..", class:"form-control" %>
-
-      <%= f.submit "ログイン", class:"btn btn-primary text-white px-3 badge-pill"%>
-  <% end %>
-
   <h3>アカウントをお持ちでない方</h3>
   <p><%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。</p>
