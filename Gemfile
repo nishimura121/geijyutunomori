@@ -69,3 +69,18 @@ gem 'kaminari'
 gem 'jquery-rails'
 gem 'pry-rails'
 gem 'impressionist', '~>1.6.1'
+
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
+
+
+
+
+
+
+
+
