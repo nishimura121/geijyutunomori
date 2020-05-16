@@ -30,8 +30,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_072540) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_comments_on_item_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -74,8 +72,6 @@ ActiveRecord::Schema.define(version: 2020_05_13_072540) do
     t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["genre_id"], name: "index_items_on_genre_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_072540) do
     t.text "self_introduction"
     t.boolean "is_cancel"
     t.integer "sex"
+    t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

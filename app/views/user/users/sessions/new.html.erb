@@ -1,1 +1,36 @@
-<h3>アカウントをお持ちでない方</h3>
+<div class="row" style="background-color: rgba(150,150,150,0.3);border-radius: .5rem;" >
+  <div class= "col-xl" style="background-color: #fff;border:2px solid rgba(150,150,150,0.3); border-radius: .5rem 0 0 .5rem;">
+    <div style="min-height: 8vh;">
+      <h3 class="mb-3 mt-3">ログイン</h3>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-row">
+      <div class="col mb-3">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス..", class:"form-control" %>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col mb-3">
+        <%= f.label :password, "パスワード" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", placeholder:"パスワード..", class:"form-control" %>
+      </div>
+    </div>
+
+
+    <div class="actions text-right mt-3 mb-5">
+      <%= f.submit "ログイン>>", class:"btn btn-primary text-white px-3 badge-pill"%>
+    </div>
+  <% end %>
+  </div>
+
+  <div class="col-xl">
+      <h3 class="mb-3 mt-3">アカウントをお持ちでない方</h3>
+
+    <div>
+  <p><%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。</p>
+    </div>
+
+  </div>
+</div>
