@@ -2,8 +2,12 @@ class User::ItemsController < ApplicationController
   impressionist :actions=> [:show]
 
   def index
-    @item =Item.all
+    @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).per(3)
+    @genre = Genre.find(params[:genre_id])
+    @user = User.find(current_user.id)
   end
+
+
 
   def show
     @item = Item.find(params[:id])
@@ -47,9 +51,10 @@ class User::ItemsController < ApplicationController
     end
   end
 
+
   private
    def item_params
-    params.require(:item).permit(:name, :description, :image, :genre_id)
+    params.require(:item).permit(:name, :description, :image, :genre_id, :content)
    end
 
 end

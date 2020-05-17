@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-  	resources :comments, only: [:show, :destroy]
+  	resources :comments, only: [:destroy]
     resources :items, only: [:index, :show, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
     root 'home#index'
@@ -29,7 +29,7 @@ scope module: :user do
       end
     end
     resources :items, only: [:index, :show, :edit, :update, :destroy ,:create ,:new] do
-      resource :comments, only: [:create]
+    resource :comments, only: [:create, :destroy]
     end
 end
 end

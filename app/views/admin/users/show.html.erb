@@ -1,29 +1,32 @@
 <h1>会員詳細</h1>
 
-<% if @customer.is_cancel == false %>
-  	   <p><span class="ml-2 badge badge-pill badge-success">有効会員</span></p>
-  	  <% else %>
-  	    <p><span class="ml-2 badge badge-pill badge-danger">無効会員</span></p>
-  	  <% end %>
 
-<% @user each do |user| %>
-<p>顧客ID
-<%= user.id %></p>
+<p>プロフィール画像
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 100px; height: 100px;"  %></p>
 
+<p>会員ID
+<%= @user.id %></p>
 <p>名前
-<%= user.name %></p>
-<p>メールアドレス
-<%= user.email %></p>
+<%= @user.name %></p>
+<p>性別
+<%= @user.sex %></p>
 <p>年齢
-<%= user.age %></p>
+<%= @user.age %></p>
 <p>住所
-<%= user.address %></p>
+<%= @user.prefecture %></p>
+<p>メールアドレス
+<%= @user.email %></p>
 <p>HP
-<%= user.hp_address %></p>
+<%= @user.hp_address %></p>
 <p>SNS
-<%= user.sns_address %></p>
+<%= @user.sns_address %></p>
 <p>自己紹介
-<%= user.self_introduction %></p>
-<% end%>
+<%= @user.self_introduction %></p>
 
-<%= link_to '編集する',edit_admin_user_path %>
+
+
+
+
+
+
+<%= link_to '会員編集する',edit_admin_user_path(@user) %>

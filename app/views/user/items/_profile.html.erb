@@ -1,0 +1,9 @@
+<p><strong>プロフィール</strong></p>
+    <div class="profile-list">
+      <%= attachment_image_tag user, :profile_image %>
+        <div class = "mask badge-pill">
+          <div class ="caption badge-pill"><strong class="text-light"><%= user.name %></strong>
+          </div>
+        </div>
+        <%= user.self_introduction %>
+    </div>

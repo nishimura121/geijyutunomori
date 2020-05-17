@@ -5,6 +5,7 @@ class User::UsersController < ApplicationController
   end
 
   def new
+    @genres = Genre.all
   end
 
 ##退会ボタンを押す

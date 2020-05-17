@@ -4,16 +4,15 @@
              <tr>
                <th class="col-md-2">ID</th>
               <th class="col-md-5">名前</th>
-              <th class="col-md-3">メールアドレス</th>
+              <th class="col-md-3"></th>
               <th class="col-md-1">会員ステータス</th>
             </tr>
           </thead>
-          <% @users.each do |users| %>
+          <% @users.each do | user | %>
             <tbody>
               <tr>
-              	<td><%= users.id %></td>
-                <td><%= user.name  %></td>
-                <td> <%= user.email %> </td>
+              	<td><%= user.id %></td>
+                <td><%= link_to user.name,admin_user_path(user) %></td>
                 <td> <%= user.is_cancel ? :'退会済':'有効' %></td>
               </tr>
           </tbody>

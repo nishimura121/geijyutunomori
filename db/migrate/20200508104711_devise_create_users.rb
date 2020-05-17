@@ -34,9 +34,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
 
       t.integer :age
-      t.string :address
       t.integer :sex
       t.string :name
+      t.integer :prefecture
       t.timestamps null: false
     end
 

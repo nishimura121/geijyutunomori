@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_072540) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "content"
+    t.text "content"
     t.integer "item_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 2020_05_13_072540) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer "age"
-    t.string "address"
     t.integer "sex"
     t.string "name"
+    t.integer "prefecture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "hp_address"

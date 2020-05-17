@@ -18,7 +18,7 @@
             </tr>
             <tr>
             <th>投稿者</th>
-            <th><%=link_to @item.user.name,user_path %></th>
+            <th><%=link_to @item.user.name, "/users/#{@item.user_id}" %></th>
             </tr>
 
               <tr>
@@ -28,15 +28,27 @@
 
 
            <%= form_for @comment,url:item_comments_path(@item) do |f| %>
-              <% if user_signed_in? %>
-                  <%= f.text_field :content %>
+                  <%= f.text_area :content %>
                   <%= f.submit 'レビューする' %>
-                </div>
-              <% else %>
-                レビューを投稿するには<%= link_to "サインイン", new_user_session_path %>してください。
-              <% end %>
-            </div>
             <% end %>
+
+<small>コメント数：<%= @item.comments.count %>件</small></p>
+
+<% counter = 0 %>
+<% @item.comments.each do |comment| %>
+
+
+
+<tr>
+<td><%= counter =+ 1 %></td>
+<td><%= comment.user.name %></td>
+<td><%= comment.content %></td>
+<td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+<% if current_user == comment.user %>
+<td><%= button_to "削除する",item_comments_path(comment.id),method: :delete,data: {confirm: "本当に消しますか？"} %></td>
+<% end %>
+<% end %>
+</tr>
 
 
           </tbody>

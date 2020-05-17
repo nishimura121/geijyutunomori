@@ -1,8 +1,8 @@
-マイページ
+マイページ</br>
 
 
-              <th>プロフィール画像</th>
-<%= attachment_image_tag @user, :profile_image %>
+<th>プロフィール画像</th>
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 100px; height: 100px;"  %>
 
 <table class="table">
           <tbody>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
               <th>住所</th>
-              <th><%=@user.address %></th>
+              <th><%=@user.prefecture %></th>
             </tr>
             <tr>
             <th>HP</th>

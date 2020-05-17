@@ -26,13 +26,8 @@
 
   <div class="field">
     <%= f.label :住所 %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+    <%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
   </div>
-
-
-
-
-
 
 
   <div class="field">
