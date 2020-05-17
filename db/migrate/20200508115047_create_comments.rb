@@ -4,8 +4,8 @@ class CreateComments < ActiveRecord::Migration[5.2]
       t.string :content
       t.integer :item_id
       t.integer :user_id
-      #t.references :item, type: :integer, foreign_key: true
-      #t.references :user, type: :integer, foreign_key: true
+      # t.references :item, type: :integer, foreign_key: true
+      # t.references :user, type: :integer, foreign_key: true
 
       t.timestamps
     end
