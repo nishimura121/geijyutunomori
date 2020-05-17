@@ -1,10 +1,18 @@
 マイページ
 
+
+              <th>プロフィール画像</th>
+              <%= attachment_image_tag @user, :profile_image %>
+
 <table class="table">
           <tbody>
             <tr>
               <th>名前</th>
               <th><%=@user.name %></th>
+            </tr>
+              <tr>
+              <th>性別</th>
+              <th><%=@user.sex %></th>
             </tr>
             <tr>
               <th>年齢</th>

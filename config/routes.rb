@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   end
 
 scope module: :user do
-    resources :users, only: [:show, :index, :new] do
+    resources :users, only: [:show, :new] do
       collection do
-        patch'/' => 'users#destroy', as:'destroy'
-        get 'cancel'
+        delete'/' => 'users#destroy', as:'destroy'
+        post 'cancel'
       end
     end
     resources :items, only: [:index, :show, :edit, :update, :destroy ,:create ,:new] do

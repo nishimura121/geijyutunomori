@@ -41,7 +41,7 @@ class User::Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for(resource)
-    users_path
+    user_path(@user)
   end
 
   def update_resource(resource, params)

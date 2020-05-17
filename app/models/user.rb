@@ -7,9 +7,12 @@ class User < ApplicationRecord
   has_many :comments
   has_many :favorites
   has_many :likes
+  attachment :profile_image
 
   def active_for_authentication?
     super && self.is_cancel? == false
   end
+
+enum sex: { 男性: 0, 女性: 1 }
 end
 

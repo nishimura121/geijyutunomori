@@ -1,5 +1,11 @@
 <h2>登録情報編集 <%= resource_name.to_s.humanize %></h2>
 
+
+
+<%= form_for @user do |form| %>
+  <%= form.attachment_field :profile_image %>
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -19,7 +25,7 @@
 <%= f.text_field :sns_address, autofocus: true, autocomplete: "sns_address", class:"form-control" %><br />
 
 <%= f.label :self_introduction, "自己紹介" %>
-<%= f.text_field :self_introduction, autofocus: true, autocomplete: "self_introduction", class:"form-control" %><br />
+<%= f.text_area :self_introduction, autofocus: true, autocomplete: "self_introduction", class:"form-control" %><br />
 
 <%= f.label :email %>
 <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br />
@@ -28,4 +34,4 @@
 
 <% end %>
 
-<p><%= button_to "退会する", cancel_users_path, method: :get, class:"btn btn-secondary px-3 badge-pill" %></p>
+<p><%= button_to "退会する", cancel_user_registration_path %></p>

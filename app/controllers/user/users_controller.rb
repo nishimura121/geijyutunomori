@@ -4,9 +4,6 @@ class User::UsersController < ApplicationController
     @items = @user.items
   end
 
-  def index
-  end
-
   def new
   end
 
