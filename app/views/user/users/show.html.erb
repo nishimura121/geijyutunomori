@@ -11,6 +11,7 @@
     <% end %>
 
 
+
 <th>プロフィール画像</th>
 <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 100px; height: 100px;"  %>
 
@@ -55,6 +56,14 @@
                 <th>フォロワー数</th>
                 <th><%= link_to @user.followed.count, followers_user_path(@user) %></th>
               </tr>
+　　　　　　　　<tr>
+                <th>お気に入り</th>
+                <th><%= link_to  icon('far', 'star'),user_bookmarks_path(@user) %></th>
+              </tr>
+
+
+
+
 
            </tbody>
 </table>

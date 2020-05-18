@@ -8,7 +8,6 @@ class User::ItemsController < ApplicationController
   end
 
 
-
   def show
     @item = Item.find(params[:id])
     @comment = Comment.new
@@ -49,6 +48,11 @@ class User::ItemsController < ApplicationController
     else
       render action: :new
     end
+  end
+
+  def ranking
+   @items = Item.find(Bookmark.group(:item_id).order('count(item_id) desc').limit(10).pluck(:item_id))
+   @genres = Genre.all
   end
 
 

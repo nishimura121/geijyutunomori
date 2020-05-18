@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
 scope module: :user do
     resources :users, only: [:show, :new] do
+      resources :bookmarks, only: [:index]
       resource :relationships, only: [:create, :destroy]
         member do
           get 'follows' => 'relationships#follower', as: 'follows'
@@ -34,6 +35,10 @@ scope module: :user do
       end
     end
     resources :items, only: [:index, :show, :edit, :update, :destroy ,:create ,:new] do
+      collection do
+       get 'ranking' => 'items#ranking', as: 'ranking'
+      end
+     resource :bookmarks, only: [:create, :destroy]
      resource :favorites, only: [:create, :destroy]
      resource :comments, only: [:create, :destroy]
     end

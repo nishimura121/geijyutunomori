@@ -26,10 +26,17 @@
           <th>フォロワー数</th>
           <th><%= link_to @user.followed.count, followers_user_path(@user) %></th>
         </tr>
+        <tr>
+          <th>お気に入り</th>
+          <th><%= link_to  icon('far', 'star'),user_bookmarks_path(@user) %></th>
+        </tr>
       </table>
 
       <div class="col-md-9">
        <h1>作品一覧</h1>
+
+
+      <%= link_to 'ランキング',ranking_items_path %>
 
       <div style="width: 100%;">
         <%= link_to '投稿する',new_item_path, class:"ml-3" %>

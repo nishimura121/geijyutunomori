@@ -6,17 +6,33 @@
       <tbody>
 
 <!-- いいね機能 -->
-        <td>
+        <td>いいね<i class="far fa-thumbs-up"></i>
           <% if @item.favorited_by?(current_user) %>
             <%= link_to item_favorites_path(@item, redirect_id: 0), method: :delete do %>
-              <i class="fas fa-heart unlike-btn"><%= @item.favorites.count%></i>
+              <%= @item.favorites.count %></i>
             <% end %>
           <% else %>
             <%= link_to item_favorites_path(@item, redirect_id: 0), method: :post do %>
-              <i class="far fa-heart like-btn" ></i><%= @item.favorites.count %></i>
+             <%= @item.favorites.count %>
             <% end %>
           <% end %>
         </td>
+
+
+お気に入り
+<% if user_signed_in? %>
+    <% if @item.bookmark_by?(current_user) %>
+      <%= link_to item_bookmarks_path(@item, redirect_id: 0), method: :delete, id:"bookmark-button", remote: true do %>
+        <i class="fas fa-star"></i>
+      <% end %>
+    <% else %>
+      <%= link_to item_bookmarks_path(@item, redirect_id: 0),method: :post, id:"bookmark-button", remote: true do %>
+        <i class="far fa-star"></i>
+      <% end %>
+    <% end %>
+<% else %>
+<% end %>
+
 
 
 
@@ -50,13 +66,10 @@
 
 <small>コメント数：<%= @item.comments.count %>件</small></p>
 
-<% counter = 0 %>
-<% @item.comments.each do |comment| %>
 
-
-
+<% @item.comments.each.with_index(1) do | comment, i| %>
 <tr>
-<td><%= counter =+ 1 %></td>
+<td><td><%= i %></td></td>
 <td><%= comment.user.name %></td>
 <td><%= comment.content %></td>
 <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
@@ -65,7 +78,6 @@
 <% end %>
 <% end %>
 </tr>
-
 
           </tbody>
         </table>
