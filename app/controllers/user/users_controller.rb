@@ -20,7 +20,11 @@ class User::UsersController < ApplicationController
   def cancel
     @user = User.find(current_user.id)
   end
-  # ***_path
-  # index action
-  # show action
+
+  def follows
+  end
+
+  def followers
+  end
+
 end

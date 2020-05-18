@@ -23,14 +23,20 @@ Rails.application.routes.draw do
 
 scope module: :user do
     resources :users, only: [:show, :new] do
+      resource :relationships, only: [:create, :destroy]
+        member do
+          get 'follows' => 'relationships#follower', as: 'follows'
+          get 'followers' => 'relationships#followed', as: 'followers'
+        end
       collection do
         delete'/' => 'users#destroy', as:'destroy'
         post 'cancel'
       end
     end
     resources :items, only: [:index, :show, :edit, :update, :destroy ,:create ,:new] do
-    resource :comments, only: [:create, :destroy]
+     resource :comments, only: [:create, :destroy]
     end
 end
+
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
