@@ -34,6 +34,7 @@ scope module: :user do
       end
     end
     resources :items, only: [:index, :show, :edit, :update, :destroy ,:create ,:new] do
+     resource :favorites, only: [:create, :destroy]
      resource :comments, only: [:create, :destroy]
     end
 end
