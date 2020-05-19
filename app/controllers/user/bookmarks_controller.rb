@@ -1,7 +1,6 @@
 class User::BookmarksController < ApplicationController
   def index
-    # @bookmarks = Bookmark.where(user_id: user_id)
-    @bookmarks = Bookmark.where(@user)
+    @bookmarks = User.find(params[:user_id]).bookmarks
    end
 
    def create

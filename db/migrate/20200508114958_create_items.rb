@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :image_id
       t.integer :user_id
       t.integer :genre_id
+      t.integer :exp
       # t.references :user, type: :integer, foreign_key: true
       # t.references :genre, type: :integer, foreign_key: true
 

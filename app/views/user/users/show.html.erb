@@ -47,7 +47,10 @@
               <th><%=@user.self_introduction %></th>
             </tr>
 
-
+　　　　　　　　<tr>
+                <th>レベル</th>
+                <th><%= @user.level %></th>
+              </tr>
             <tr>
                 <th>フォロー数</th>
                 <th><%= link_to @user.follower.count, follows_user_path(@user) %></th>

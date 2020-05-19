@@ -1,4 +1,4 @@
 class Genre < ApplicationRecord
-	has_one :items
+	has_many :items
 
 end

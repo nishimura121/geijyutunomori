@@ -11,7 +11,7 @@
             <% end %>
        <td><%= link_to bookmark.item.name,item_path(bookmark.item) %></td>
        <td><%= link_to bookmark.item.user.name,user_path(bookmark.item.user) %></td>
-       <% if @user == current_user.id %>
+        <% if current_user == bookmark.user %>
        <td><%= link_to "お気に入りから外す", item_bookmarks_path(bookmark.item.id), method: :delete%></td>
        <% end %>
   </tr>
@@ -20,16 +20,5 @@
 お気に入り作品は現在ありません
 <% end %>
 </table>
-
-
-
-
-
-
-
-
-
-
-
 
 

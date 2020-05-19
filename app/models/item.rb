@@ -3,9 +3,9 @@ class Item < ApplicationRecord
 
   belongs_to :user
   belongs_to :genre
-  has_many :comments
-  has_many :favorites
-  has_many :bookmarks
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   attachment :image
 
   def favorited_by?(user)

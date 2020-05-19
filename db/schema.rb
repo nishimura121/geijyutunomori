@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_121830) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "item_id"], name: "index_bookmarks_on_user_id_and_item_id", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_121830) do
     t.string "image_id"
     t.integer "user_id"
     t.integer "genre_id"
+    t.integer "exp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_05_18_121830) do
     t.text "self_introduction"
     t.boolean "is_cancel"
     t.string "profile_image_id"
+    t.integer "exp_sum"
+    t.integer "level"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
