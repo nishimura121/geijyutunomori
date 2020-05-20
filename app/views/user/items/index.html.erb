@@ -40,7 +40,7 @@
        <h1>作品一覧</h1>
 
 
-      <%= link_to 'ランキング',ranking_items_path %>
+      <%= link_to 'ランキング',ranking_items_path(genre_id: @genre.id) %>
 
       <div style="width: 100%;">
         <%= link_to '投稿する',new_item_path, class:"ml-3" %>
