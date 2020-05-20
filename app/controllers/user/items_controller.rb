@@ -21,7 +21,7 @@ class User::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @comment = Comment.new
-    @comments = @item.comments
+    @comments = @item.comments.page(params[:page]).per(3)
     impressionist(@item)
   end
 
@@ -61,10 +61,34 @@ class User::ItemsController < ApplicationController
   end
 
   def ranking
-   @items = Item.find(Bookmark.group(:item_id).order('count(item_id) desc').limit(10).pluck(:item_id))
-   @genres = Genre.all
+    # @items = Item.find(Bookmark.group(:item_id).order('count(item_id) desc').limit(10).pluck(:item_id))
+    # binding.pry
+    # @items = Item.find(
+    #   Item.joins(:bookmarks)
+    #     .eager_load(:bookmarks)
+    #     .where(items: { genre_id: params[:genre_id] })
+    #     .group("bookmarks.items_id")
+    #     .order("count(bookmarks.item_id) desc")
+    #     .limit(10)
+    #     .select("items.id, count(bookmarks.item_id)")
+    #     .pluck("items.id")
+    # )
+    # Actress.joins(:movies).eager_load(:movies).where(movies: { year: 2013 })
+    # [
+    #   {id, 1},
+    #   {id, 2},
+    # ].pluck(:id) == [1,2]
+    item_ids = Item.where(genre_id: params[:genre_id]).pluck(:id)
+    bookmark_item_ids = Bookmark.where(item_id: item_ids).group(:item_id).order('count(item_id) desc').limit(10).pluck(:item_id)
+    @items = Item.find(bookmark_item_ids)
+    @genres = Genre.all
   end
 
+
+# @genre_id = request.query_parameters[:genre_id].to_i
+   # @items = Item.where(genre_id: @genre_id).where(id: Bookmark.group(:item_id).order('count(item_id) desc'))
+   # @bookmark = Bookmark.group(:item_id).order('count(item_id) desc')
+   # .find(Bookmark.group(:item_id).order('count(item_id) desc').limit(10).pluck(:item_id))
 
   private
    def item_params

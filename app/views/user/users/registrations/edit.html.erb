@@ -14,8 +14,9 @@
 <%= f.label :age,"年齢" %>
 <%= f.text_field :age, autofocus: true, autocomplete: "age", class:"form-control" %><br />
 
-<%= f.label :prefecture, "住所" %>
-<%= f.text_field :prefecture, autofocus: true, autocomplete: "prefecture", class:"form-control" %><br />
+<%= f.label :住所 %>
+<%= f.select :prefecture, User.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %><br />
+
 
 <%= f.label :hp_address, "HP" %>
 <%= f.text_field :hp_address, autofocus: true, autocomplete: "hp_address", class:"form-control" %><br />

@@ -9,7 +9,7 @@
 
     <div class="form-row">
       <div class="col text-left mt-4">
-        <%= button_to "もどる", edit_user_registration_path, class:"btn btn-primary badge-pill text-white px-3" %>
+        <%= button_to "もどる", edits_users_path, method: :get,class:"btn btn-primary badge-pill text-white px-3" %>
       </div>
       <div class="col text-right mt-4">
         <%= button_to "退会する", destroy_users_path, method: :patch, class:"btn btn-secondary badge-pill px-3 mr-5" %>

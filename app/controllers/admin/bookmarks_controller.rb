@@ -1,6 +1,6 @@
-class User::BookmarksController < ApplicationController
-  def index
-    @bookmarks = User.find(params[:user_id]).bookmarks.page(params[:page]).per(3)
+class Admin::BookmarksController < ApplicationController
+	def index
+    @bookmarks = User.find(params[:user_id]).bookmarks.page(params[:page]).per(2)
    end
 
    def create
@@ -27,6 +27,4 @@ class User::BookmarksController < ApplicationController
         redirect_to item_path(@item)
       end
     end
-  end
-
-
+end

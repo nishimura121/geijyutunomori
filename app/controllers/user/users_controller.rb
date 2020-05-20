@@ -18,6 +18,19 @@ class User::UsersController < ApplicationController
     @genres = Genre.all
   end
 
+  def edits
+    @user = User.find(current_user.id)
+  end
+
+  def update
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+     redirect_to user_path
+    else
+      render action: :edits
+    end
+  end
+
 ##退会ボタンを押す
   def destroy
     @user = User.find(current_user.id)
@@ -26,8 +39,11 @@ class User::UsersController < ApplicationController
     redirect_to root_path
   end
 
+
+  # redirect_to :back
+
 ##退会確認ページの表示
-  def cancel
+  def cancels
     @user = User.find(current_user.id)
   end
 
@@ -37,6 +53,9 @@ class User::UsersController < ApplicationController
   def followers
   end
 
+private
+  def user_params
+    params.require(:user).permit(:name, :age, :prefecture, :hp_address, :sns_address, :self_introduction, :email, :profile_image, :is_cancel)
+  end
 end
-
 

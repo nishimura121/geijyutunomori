@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :items
   has_many :comments
   has_many :favorites
-  has_many :bookmarks
+  has_many :bookmarks, dependent: :destroy
   attachment :profile_image
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得

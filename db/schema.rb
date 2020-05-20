@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(version: 2020_05_18_121830) do
     t.string "image_id"
     t.integer "user_id"
     t.integer "genre_id"
-    t.integer "exp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -112,7 +111,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_121830) do
     t.string "hp_address"
     t.string "sns_address"
     t.text "self_introduction"
-    t.boolean "is_cancel"
+    t.boolean "is_cancel", default: false, null: false
     t.string "profile_image_id"
     t.integer "exp_sum"
     t.integer "level"

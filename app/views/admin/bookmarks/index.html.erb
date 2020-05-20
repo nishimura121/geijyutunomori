@@ -1,0 +1,21 @@
+
+
+<p>お気に入りリスト</p>
+<table>
+<% if @bookmarks.present? %>
+    <% @bookmarks.each.with_index(1) do | bookmark, i| %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= link_to  admin_item_path(bookmark.item) do %>
+          <%= attachment_image_tag bookmark.item, :image, :fill, 180, 180 %></td>
+            <% end %>
+       <td><%= link_to bookmark.item.name, admin_item_path(bookmark.item) %></td>
+       <td><%= link_to bookmark.item.user.name, admin_user_path(bookmark.item.user) %></td>
+       <td><%= link_to "お気に入りから外す", admin_item_bookmarks_path(bookmark.item.id), method: :delete%></td>
+  </tr>
+    <% end %>
+<% else %>
+お気に入り作品は現在ありません
+<% end %>
+</table>
+<%= paginate @bookmarks %>
