@@ -1,35 +1,45 @@
-<h1>投稿作品一覧画面</h1>
+<h3>投稿作品一覧</h3>
 
 
-<table class="table table=striped">
-           <thead>
-             <tr>
-               <th class="col-md-2">ID</th>
-              <th class="col-md-5">投稿画像</th>
-              <th class="col-md-3">商品名</th>
-              <th class="col-md-1">ジャンル</th>
-            </tr>
-          </thead>
-          <% @items.each.each.with_index(1) do | item, i | %>
-            <tbody>
-              <tr>
-
-              	<td>
-                  <% if params[:page].nil? %>
-                    <%= i %>
-                  <% else %>
-                    <%= i + (params[:page].to_i - 1) * 3 %>
-                  <% end %>
-                </td>
-                <td><%= link_to admin_item_path(item) do %>
-                  <%= attachment_image_tag item, :image, :fill, 150, 150 %></td>
-                  <% end %>
-                <td> <%= link_to item.name,admin_item_path(item) %> </td>
-                <td> <%= item.genre.name %> </td>
-              </tr>
-          </tbody>
+ <table class="table table=striped">
+     <tr>
+      <th style="width: 5%;">ID</th>
+      <th style="width: 10%;">投稿日時</th>
+      <th style="width: 30%;">投稿画像</th>
+      <th style="width: 15%;">投稿者</th>
+      <th style="width: 15%;">作品名</th>
+      <th style="width: 15%;">作品情報</th>
+      <th style="width: 10%;">
+        <%= form_tag(admin_items_path, method: "get") do %>
+            <div class="input-group">
+              <%= select_tag :genre, options_for_select([["絵","絵"],["陶芸","陶芸"],["彫刻","彫刻"],["工芸","工芸"],["書","書"]]), include_blank: "ジャンル一覧" %>
+              <%= submit_tag "絞り込み", class:"btn btn-sm btn-secondary" %>
+            </div>
+          <% end %></th>
+    </tr>
+  <% @items.each.each.with_index(1) do | item, i | %>
+      <tr>
+      	<td>
+          <% if params[:page].nil? %>
+            <%= i %>
+          <% else %>
+            <%= i + (params[:page].to_i - 1) * 3 %>
           <% end %>
-        </table>
+        </td>
+        <td><%= item.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td><%= link_to admin_item_path(item) do %>
+          <%= attachment_image_tag item, :image, :fill, 150, 150 %></td>
+          <% end %>
+          <td><%= link_to item.user.name, "/admin/users/#{item.user.id}" %></td>
+        <td> <%= link_to item.name,admin_item_path(item) %> </td>
+        <td>お気に入り数<%= item.bookmarks.count %></br>
+        視聴者数<%= item.impressionist_count %><br>
+        コメント数<%= item.comments.count %>
+      </td>
+        <td><%= item.genre.name %></td>
+      </tr>
+    <% end %>
+ </table>
 <%= paginate @items %>
 
 

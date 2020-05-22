@@ -1,20 +1,27 @@
-<h1>会員一覧画面</h1>
+<h3>会員一覧画面</h3>
 <table class="table table=striped">
-           <thead>
              <tr>
-               <th class="col-md-2">ID</th>
-              <th class="col-md-5">名前</th>
-              <th class="col-md-3"></th>
-              <th class="col-md-1">会員ステータス</th>
-            </tr>
-          </thead>
+              <th>ID</th>
+              <th></th>
+              <th>名前</th>
+              <th>レベル</th>
+              <th>投稿数</th>
+              <th>会員ステータス</th>
+             </tr>
           <% @users.each do | user | %>
-            <tbody>
               <tr>
               	<td><%= user.id %></td>
+                <td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 50px; height: 50px;"  %></td>
                 <td><%= link_to user.name,admin_user_path(user) %></td>
+                <td><%= user.level %></td>
+                <td><%= user.items.where(user_id: user.id).all.count.to_i %></td>
+
                 <td> <%= user.is_cancel ? :'退会済':'有効' %></td>
               </tr>
-          </tbody>
-          <% end%>
+          <% end %>
         </table>
+
+
+
+
+

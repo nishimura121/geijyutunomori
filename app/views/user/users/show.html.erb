@@ -52,7 +52,7 @@
               <th><%=@user.self_introduction %></th>
             </tr>
 
-　　　　　　　　<tr>
+            <tr>
                 <th>レベル</th>
                 <th><%= @user.level %></th>
               </tr>
@@ -64,7 +64,7 @@
                 <th>フォロワー数</th>
                 <th><%= link_to @user.followed.count, followers_user_path(@user) %></th>
               </tr>
-　　　　　　　　<tr>
+              <tr>
                 <th>お気に入り</th>
                 <th><%= link_to  icon('far', 'star'),user_bookmarks_path(@user) %></th>
               </tr>

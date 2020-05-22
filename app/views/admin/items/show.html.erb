@@ -1,52 +1,72 @@
-<h1>作品詳細</h1>
-
-<%= attachment_image_tag @item, :image %>
-
-        <table class="table">
-          <tbody>
-            <tr>
-              <th>作品名</th>
-              <th><%=@item.name %></th>
-            </tr>
-            <tr>
-              <th>作品説明</th>
-              <th><%=@item.description %></th>
-            </tr>
-            <tr>
-              <th>投稿日時</th>
-              <th><%= @item.created_at.strftime('%Y/%m/%d %H:%M') %></th>
-            </tr>
-            <tr>
-            <th>投稿者</th>
-            <th><%=link_to @item.user.name, "/admin/users/#{@item.user_id}" %></th>
-            </tr>
-
-              <tr>
-              <th>視聴者数</th>
-              <th><%= @item.impressionist_count %></th>
-            </tr>
+<h3>作品詳細</h3>
 
 
+<div class = "container">
 
-<small>コメント数：<%= @item.comments.count %>件</small></p>
+<div class = "row">
+   <div class="col-xl-4">
+    <%= attachment_image_tag @item, :image %>
+   </div>
 
-<% if @item.comments.present? %>
-<% @item.comments.each.with_index(1) do | comment, i| %>
+   <div class="col-xl-8">
+     <table class="m-5">
+        <tr class="m-3">
+          <th>作品名</th>
+          <th><%=@item.name %></th>
+        </tr>
+        <tr>
+          <th>作品説明</th>
+          <th><%=@item.description %></th>
+        </tr>
+        <tr>
+          <th>投稿日時</th>
+          <th><%= @item.created_at.strftime('%Y/%m/%d %H:%M') %></th>
+        </tr>
+        <tr>
+          <th>投稿者</th>
+          <th><%=link_to @item.user.name, "/admin/users/#{@item.user_id}" %></th>
+        </tr>
+        <tr>
+          <th>視聴者数</th>
+          <th><%= @item.impressionist_count %></th>
+        </tr>
+    </table>
+  </div>
+</div>
 
-<tr>
-<td><%= i %></td>
-<td><%= comment.user.name %></td>
-<td><%= comment.content %></td>
-<td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-<td><%= button_to "削除する",item_comments_path(comment.id),method: :delete,data: {confirm: "本当に消しますか？"} %></td>
-<% end %>
+<div class = "row">
+  <div class="mb-3 ml-2">
+   <small>コメント数：<%= @item.comments.count %>件</small></br>
+  </div>
 
-<% else %>
-現在コメントはありません
-<% end %>
-</tr>
-          </tbody>
-        </table>
+  <table class="mt-5 mb-5">
+    <tr>
+      <th>ID</th>
+      <th>投稿日時</th>
+      <th>コメントした人</th>
+      <th>コメント内容</th>
+    </tr>
+    <% if @item.comments.present? %>
+     <% @item.comments.each.with_index(1) do | comment, i| %>
 
+      <tr>
+        <td><%= i %></td>
+        <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td align=center><%= comment.user.name %></td>
+        <td style="width=100px"><%= comment.content %></td>
+        <td><%= button_to "削除する",item_comments_path(comment.id),method: :delete,data: {confirm: "本当に消しますか？"} %></td>
+      </tr>
+     <% end %>
 
-<%= link_to "作品を削除する",admin_item_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm" %>
+    <% else %>
+    現在コメントはありません
+    <% end %>
+  </table>
+</div>
+
+  <%= paginate @comments %>
+  <div class="text-right m-5">
+  <%= link_to "作品を削除する",admin_item_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm" %>
+  </div>
+
+</div>

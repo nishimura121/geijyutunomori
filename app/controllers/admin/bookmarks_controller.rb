@@ -1,6 +1,6 @@
 class Admin::BookmarksController < ApplicationController
 	def index
-    @bookmarks = User.find(params[:user_id]).bookmarks.page(params[:page]).per(2)
+    @bookmarks = User.find(params[:user_id]).bookmarks.page(params[:page]).per(10)
    end
 
    def create

@@ -1,12 +1,13 @@
 class Admin::ItemsController < ApplicationController
   def index
-  	@items = Item.all.page(params[:page]).per(3)
-  	@genres = Genre.all
+    @item = Item.where(genre_id: params[:id])
+    @items = @item.page(params[:page]).per(5)
+    # @genre = Genre.all
   end
 
   def show
   	@item = Item.find(params[:id])
-    @comments = @item.comments
+    @comments = @item.comments.page(params[:page]).per(5)
     impressionist(@item)
   end
 

@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :名前 %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", size: 30 %>
   </div>
 
 
@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label :年齢 %><br />
-    <%= f.text_field :age, autofocus: true, autocomplete: "age" %>
+    <%= f.number_field :age, autofocus: true, autocomplete: "age", min: 15, max: 100 %>
   </div>
 
   <div class="field">

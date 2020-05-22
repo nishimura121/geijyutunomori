@@ -1,4 +1,4 @@
-<h1>投稿作品編集</h1>
+<h3>投稿作品編集</h3>
 <%= form_for(@item , url: admin_item_path(@item)) do |f| %>
       <div class="row">
         <div class="col-md-4">
@@ -29,5 +29,6 @@
       </div>
     <% end %>
     <p>
-<%= link_to "削除する",admin_item_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm" %>
-</p>
+ <div class="m-3">
+  <%= link_to "削除する",admin_item_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm" %>
+</div>
