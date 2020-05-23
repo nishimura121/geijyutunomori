@@ -1,8 +1,12 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @item = Item.where(genre_id: params[:id])
-    @items = @item.page(params[:page]).per(5)
-    # @genre = Genre.all
+    route = Rails.application.routes.recognize_path(request.referer)
+    if route == {:controller => "admin/home", :action => "index"}
+       @items = Item.page(params[:page]).per(10)
+    else
+       @item = Item.where(genre: params[:genre])
+       @items = @item.page(params[:page]).per(10)
+    end
   end
 
   def show

@@ -12,7 +12,7 @@
       <th style="width: 10%;">
         <%= form_tag(admin_items_path, method: "get") do %>
             <div class="input-group">
-              <%= select_tag :genre, options_for_select([["絵","絵"],["陶芸","陶芸"],["彫刻","彫刻"],["工芸","工芸"],["書","書"]]), include_blank: "ジャンル一覧" %>
+              <%= select_tag :genre, options_for_select({ 絵:1,陶芸:2,彫刻:3,工芸:4,書:5}), include_blank: "ジャンル一覧" %>
               <%= submit_tag "絞り込み", class:"btn btn-sm btn-secondary" %>
             </div>
           <% end %></th>
@@ -23,7 +23,7 @@
           <% if params[:page].nil? %>
             <%= i %>
           <% else %>
-            <%= i + (params[:page].to_i - 1) * 3 %>
+            <%= i + (params[:page].to_i - 1) * 10 %>
           <% end %>
         </td>
         <td><%= item.created_at.strftime('%Y/%m/%d %H:%M') %></td>

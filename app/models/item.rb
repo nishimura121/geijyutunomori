@@ -15,12 +15,13 @@ class Item < ApplicationRecord
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
-
-  enum genre:[
+ enum genre:[
     :絵,
     :陶芸,
     :彫刻,
     :工芸,
     :書
   ]
+
+
 end
