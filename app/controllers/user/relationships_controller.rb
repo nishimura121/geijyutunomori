@@ -12,6 +12,7 @@ class User::RelationshipsController < ApplicationController
   def follower
     user = User.find(params[:id])
     @users = user.following_user.page(params[:page]).per(2)
+    @items = Item.where(user_id: user.id)
   end
 
   def followed

@@ -2,7 +2,7 @@ class User::ItemsController < ApplicationController
   impressionist :actions=> [:show]
 
   def index
-    @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).per(3)
+    @items = Item.where(genre_id: params[:genre_id]).page(params[:page]).per(10)
     @genre = Genre.find(params[:genre_id])
     @user = User.find(current_user.id)
 
@@ -21,7 +21,7 @@ class User::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @comment = Comment.new
-    @comments = @item.comments.page(params[:page]).per(3)
+    @comments = @item.comments.page(params[:page]).per(10)
     impressionist(@item)
   end
 

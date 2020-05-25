@@ -16,68 +16,67 @@
   </div>
 
   <table width=800>
-	<tr>
-  	<td width=150>会員ID</td>
-  	<td><%= @user.id %></td>
   	<tr>
+    	<td width=150>会員ID</td>
+    	<td><%= @user.id %></td>
     <tr>
-  	<td>名前</td>
-  	<td><%= @user.name %></td>
-  	<tr>
     <tr>
-  	<td>性別</td>
-  	<td><%= @user.sex %></td>
-  	<tr>
+    	<td>名前</td>
+    	<td><%= @user.name %></td>
+    </tr>
     <tr>
-  	<td>年齢</td>
-  	<td><%= @user.age %></td>
-  	<tr>
+    	<td>性別</td>
+    	<td><%= @user.sex %></td>
+    </tr>
     <tr>
-  	<td>住所</td>
-  	<td><%= @user.prefecture %></td>
-  	<tr>
+    	<td>年齢</td>
+    	<td><%= @user.age %></td>
+    </tr>
     <tr>
-  	<td>メールアドレス</td>
-  	<td><%= @user.email %></td>
-  	<tr>
+    	<td>住所</td>
+    	<td><%= @user.prefecture %></td>
+    </tr>
     <tr>
-  	<td>HP</td>
-  	<td><%= @user.hp_address %></td>
-  	<tr>
+    	<td>メールアドレス</td>
+    	<td><%= @user.email %></td>
+    </tr>
     <tr>
-  	<td>SNS</td>
-  	<td><%= @user.sns_address %></td>
-  	<tr>
+    	<td>HP</td>
+    	<td><%= @user.hp_address %></td>
+    </tr>
     <tr>
-  	<td vAlign=top>自己紹介</td>
-    <% if @user.self_introduction.present? %>
-  	<td vh=30><%= @user.self_introduction %></td>
-    <% else %>
-    <% end %>
-    <td></td>
-  	<tr>
+    	<td>SNS</td>
+    	<td><%= @user.sns_address %></td>
+    </tr>
     <tr>
-  	<td>レベル</td>
-  	<td><%= @user.level %></td>
-  	<tr>
+    	<td vAlign=top>自己紹介</td>
+      <% if @user.self_introduction.present? %>
+    	<td vh=30><%= @user.self_introduction %></td>
+      <% else %>
+      <% end %>
+      <td></td>
+    </tr>
     <tr>
-  	<td>フォロー数</td>
-  	<td><%= link_to @user.follower.count, follows_admin_user_path(@user) %></td>
-  	<tr>
+    	<td>レベル</td>
+    	<td><%= @user.level %></td>
+    </tr>
     <tr>
-  	<td>フォロワー数</td>
-  	<td><%= link_to @user.followed.count, followers_admin_user_path(@user) %></td>
-  	<tr>
+    	<td>フォロー数</td>
+    	<td><%= link_to @user.follower.count, follows_admin_user_path(@user) %></td>
+    </tr>
     <tr>
-  	<td>お気に入り</td>
-  	<td><%= link_to @user.bookmarks.count, admin_user_bookmarks_path(@user) %></td>
-  	<tr>
-
+    	<td>フォロワー数</td>
+    	<td><%= link_to @user.followed.count, followers_admin_user_path(@user) %></td>
+    </tr>
+    <tr>
+    	<td>お気に入り</td>
+    	<td><%= link_to @user.bookmarks.count, admin_user_bookmarks_path(@user) %></td>
+    </tr>
   </table>
 
   <div class="m-4">
-<%= link_to '会員編集する',edit_admin_user_path(@user) %>
-</div>
+   <%= link_to '会員編集する',edit_admin_user_path(@user) %>
+  </div>
 
 </div>
 
@@ -87,9 +86,9 @@
      <h3>投稿作品一覧</h3>
       <table>
         <tr>
-        <th align=center width=50></th>
-        <th width=50>作品名</th>
-        <th width=50></th>
+          <th align=center width=50></th>
+          <th width=50>作品名</th>
+          <th width=50></th>
         </tr>
 
     		<tr>

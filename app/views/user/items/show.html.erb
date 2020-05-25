@@ -1,4 +1,3 @@
-<h1>作品詳細</h1>
 
 <%= attachment_image_tag @item, :image %>
 
@@ -67,7 +66,7 @@
 
 <% if @item.comments.present? %>
 
-<% @item.comments.each.with_index(1) do | comment, i| %>
+<% @comments.each.with_index(1) do | comment, i| %>
 <tr>
 <td><%= i %></td>
 <td><%= comment.user.name %></td>

@@ -1,4 +1,3 @@
-マイページ</br>
 
 
 <% if @user.is_cancel == false %>
@@ -12,96 +11,152 @@
 <% end %>
 
 
-<th>プロフィール画像</th>
-<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 100px; height: 100px;"  %>
 
-<table class="table">
-          <tbody>
-            <% if @user.is_cancel == false %>
-            <tr>
-              <th>名前</th>
-              <th><%=@user.name %></th>
-            <% else %>
-            <th>名前</th>
-              <th>退会したユーザーです</th>
+    <div class="card p-3">
+      <div class="card-body text-center">
+         <p>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 120px; height: 120px;"  %></p>
+      </div>
+
+      <div class="card-text mx-4 text-center">
+            <div class="mb-1">
+              <%= @user.name %>
+            </div>
+            <div class="mb-1">
+              <%= @user.sex %>
+            </div>
+            <div class="mb-1">
+              <%= @user.age %>歳
+            </div>
+            <div class="mb-1">
+              <%= @user.prefecture %>
+            </div>
+            <div class="mb-1">
+              <%= @user.email %>
+            </div>
+            <div class="mb-1">
+              HP:<%= @user.hp_address %>
+            </div>
+            <div class="mb-3">
+              SNS:<%= @user.sns_address %>
+            </div>
+            <div class="mb-3">
+              <% if @user.self_introduction.present? %>
+                  自己紹介:</br>
+                  <%= @user.self_introduction %>
+                  <% else %>
+                  自己紹介はまだありません。
+                  <% end %>
+            </div>
+            <div class="mb-1">
+              レベル<%= @user.level %>
+            </div>
+            <div class="mb-1">
+              フォロー数:<%= link_to @user.follower.count, follows_user_path(@user),style:"text-decoration:none;" %>
+            </div>
+            <div class="mb-1">
+              フォロワー数:<%= link_to @user.followed.count, followers_user_path(@user),style:"text-decoration:none;" %>
+            </div>
+            <div class="mb-3">
+              お気に入り:<%= link_to @user.bookmarks.count, user_bookmarks_path(@user),style:"text-decoration:none;" %>
+            </div>
+      </div>
+            <% if current_user.id == @user.id %>
+              <div class="m-2">
+                <div class="text1">
+                 <%= link_to '会員編集する',edits_users_path(@user),style:"text-decoration:none;" %>
+                </div>
+              </div>
             <% end %>
-            </tr>
-              <tr>
-              <th>性別</th>
-              <th><%=@user.sex %></th>
-            </tr>
-            <tr>
-              <th>年齢</th>
-              <th><%=@user.age %></th>
-            </tr>
-            <tr>
-              <th>住所</th>
-              <th><%=@user.prefecture %></th>
-            </tr>
-            <tr>
-            <th>HP</th>
-            <th><%=@user.hp_address %></th>
-            </tr>
-
-              <tr>
-              <th>SNS</th>
-              <th><%=@user.sns_address %></th>
-            </tr>
-             <tr>
-              <th>自己紹介</th>
-              <th><%=@user.self_introduction %></th>
-            </tr>
-
-            <tr>
-                <th>レベル</th>
-                <th><%= @user.level %></th>
-              </tr>
-            <tr>
-                <th>フォロー数</th>
-                <th><%= link_to @user.follower.count, follows_user_path(@user) %></th>
-              </tr>
-              <tr>
-                <th>フォロワー数</th>
-                <th><%= link_to @user.followed.count, followers_user_path(@user) %></th>
-              </tr>
-              <tr>
-                <th>お気に入り</th>
-                <th><%= link_to  icon('far', 'star'),user_bookmarks_path(@user) %></th>
-              </tr>
+    </div>
 
 
 
 
+        <div class="card mt-3">
+          <div class="mt-2 text-center">
+           投稿作品一覧(<%= @items.all.count.to_i %>)
+          </div>
+          <% if @items.present? %>
+            <% @items.each do | item | %>
+              <div class="row no-gutters">
+                <div class="d-flex col-xl border-bottom">
+                  <div class="p-3 mr-3" style="width: 280px; height:50px" >
+                    <%= link_to item_path(item) do %>
+                      <%= attachment_image_tag item,:image, :fill, 230, 230 %></td>
+                      <% end %>
+                  </div>
+                  <div class="p-3">
+                    <p class="mb-1">
+                      <strong>
+                        <%= link_to item.name, item_path(item),style:"text-decoration:none;" %>
+                      </strong>
+                    <p class="ml-auto mb-5">
+                      <span>
+                        <%= item.description %>
+                      </span>
+                    </p>
 
-           </tbody>
-</table>
+                   <p class="mb-1">
+                      <% if user_signed_in? %>
+                        <% if item.bookmark_by?(current_user) %>
+                          <%= link_to item_bookmarks_path(item, redirect_id: 0), method: :delete, id:"bookmark-button", remote: true do %>
+                            <i class="fas fa-star"></i>
+                          <% end %>
+                        <% else %>
+                          <%= link_to item_bookmarks_path(item, redirect_id: 0),method: :post, id:"bookmark-button", remote: true do %>
+                            <i class="far fa-star"></i>
+                          <% end %>
+                        <% end %>
 
-<% if current_user.id == @user.id %>
-<p>
-<%=link_to 'プロフィール編集',edits_users_path %>
-</p>
-<% end %>
+                      <% else %>
+                      <% end %>
+                  </p>
 
-<h3>投稿作品一覧</h3>
-<% if @items.present? %>
-<% @items.each do |item| %>
-<%= link_to item_path(item) do %>
-<%= attachment_image_tag item,:image %>
-<% end %>
-<%= link_to item.name,item_path(item) %>
+                  <p class="mb-0">
+                      視聴者数:<%= item.impressionist_count %>
+                  </p>
+                  <p class="mb-0">
+                      コメント数:<%= item.comments.count %>
+                  </p>
+                  <p class="mb-0">
+                      投稿:<%= item.created_at.strftime('%Y/%m/%d %H:%M') %>
+                  </p>
+                  <% if current_user.id == @user.id %>
+                  <%= link_to '投稿作品編集',edit_item_path(item),style:"text-decoration:none;" %>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+            <% end %>
+
+          <% else %>
+          <p>投稿作品はありません</p>
+          <% end %>
+        </div>
+
+      <div class="bottom">
+       <%= paginate @items %>
+      </div>
 
 
-<% if current_user.id == @user.id %>
-<%= link_to '投稿作品編集',edit_item_path(item) %>
-<% end %>
-<% end %>
-
-<% else %>
-<p>投稿作品はありません</p>
-<% end %>
 
 
 
+<style>
+.text1{
+  float:right;
+}
+.card p-3{
+  align-items: baseline;
+}
+.bottom{
+  margin-top:10px;
+  float:right;
+}
+
+</style>
 
 
 

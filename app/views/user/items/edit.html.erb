@@ -1,8 +1,8 @@
-<h1>投稿作品編集</h1>
+<h3>投稿作品編集</h3>
 <%= form_for(@item , url: item_path(@item)) do |f| %>
       <div class="row">
         <div class="col-md-4">
-          <%= attachment_image_tag @item, :image %>
+          <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
           <%= f.attachment_field :image, class:"mt-4" %>
         </div>
         <div class="col-md-8">
@@ -24,15 +24,18 @@
               </td>
             </tr>
           </table>
+          <div class="text-right">
           <%= f.submit "変更を保存" %>
+ </div>
         </div>
       </div>
     <% end %>
+
+    <div class="text-right">
     <p>
-<%= link_to "削除する",item_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm" %>
+<%= link_to "削除する",item_path,method: :delete,data: {confirm: "本当に消しますか？"},class: "btn btn-danger btn-sm", style:"text-right; margin-top:200px;" %>
 </p>
-
-
+</div>
 
 
 

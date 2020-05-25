@@ -1,7 +1,7 @@
 class User::UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
-    @items = @user.items
+    @items = @user.items.page(params[:page]).per(10)
 
 #レベル機能
     @exp1 = Item.where(user_id: current_user.id).all.count * 10

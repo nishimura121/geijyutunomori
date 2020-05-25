@@ -1,21 +1,55 @@
-<div class="top">
-<%= image_tag'top01.jpg',size:'600x500' %>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+</head>
+<body>
+
+<div id="container">
+
+<div class="slider">
+    <div class="slick-slide"><img src="/assets/ex1.jpg" alt="" /></div>
+    <div class="slick-slide"><img src="/assets/ex2.jpg" alt="" /></div>
+    <div class="slick-slide"><img src="/assets/ex3.jpg" alt="" /></div>
 </div>
 
 
-<h2><p>このサイトについて</p></h2>
 
-
-<p>
-芸術の森は、様々なアート作品を投稿し、いろいろな人からのメッセージがもらえるコミュニティサイトです。
+<div class= "col-xl mx-auto " style="border:4px solid RGB(204,204,153); border-radius: .5rem; width:30rem">
+<div class="m-2 h2">芸術の森とは</div>
+<div class="m-2">
+様々なアート作品を投稿し、いろいろな人からのメッセージがもらえるコミュニティサイトです。</br>
 お気に入りの作品を見つけて、コメント・フォローしてみましょう。
-現在扱っている種類は、絵・陶芸・工芸・彫刻・書の5つ。</p>
-
-
-<p>
+現在扱っている種類は、絵・陶芸・工芸・彫刻・書の5つ。</div>
+<div class="m-2">
 投稿された作品は誰でも鑑賞可能ですが、
-投稿やコメントは会員登録した方のみができます。
-新規登録する方は<%= link_to 'こちら', new_user_registration_path %></p>
+投稿やコメントは会員登録した方のみができます。</br>
+新規登録する方は
+<%= link_to 'こちら', new_user_registration_path %>
+</div>
+</div>
+
+
+
+<script src="slick/slick.min.js"></script>
+    <script>
+        $(function() {
+            $('.slider').slick({
+                accessibility:false,
+                autoplay:true,
+                autoplaySpeed:3000,
+                speed:3000,
+                pauseOnHover:false,
+                dots:false,
+                fade:true,
+                infinite:true,
+                arrows:false,
+            });
+        });
+    </script>
+
+</body>
 
 
 
@@ -28,8 +62,41 @@
 	text-align: center;
 }
 
+/*.container{
+    position:relative;
+}*/
+.slider{
+width:100vw;
+height:calc(100vh);
+position:absolute;
+top:0;
+left:0;
+margin:0 auto;
+text-align:center;
+}
 
+.slider img{
+object-fit:cover;
+width:100%;
+height:calc(100vh);
+margin: 0 auto;
+text-align:center;
+}
+.slider img.coverPosition{
+object-position:100% 50%;
+}
+.m-2{
+    color:#000000;
+}
+.col-xl{
+background-color:#fffaf0;
+text-align:center;
 
+}
 
 </style>
+
+
+
+
 
