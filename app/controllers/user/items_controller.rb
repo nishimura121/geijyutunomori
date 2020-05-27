@@ -1,4 +1,5 @@
 class User::ItemsController < ApplicationController
+  before_action :authenticate_user!
   impressionist :actions=> [:show]
 
   def index
@@ -14,7 +15,6 @@ class User::ItemsController < ApplicationController
     @exp5 = @user.favorites.count
     @user.exp_sum = @exp1.to_i + @exp2.to_i + @exp3.to_i + @exp4.to_i + @exp5.to_i
     @user.level = @user.exp_sum.to_i / 10 + 1
-    current_user.update(exp_sum: @user.exp_sum, level: @user.level)
   end
 
 
@@ -56,7 +56,7 @@ class User::ItemsController < ApplicationController
     if @item.save
       redirect_to new_item_path
     else
-      render action: :new
+      render :new
     end
   end
 
@@ -70,7 +70,7 @@ class User::ItemsController < ApplicationController
 
   private
    def item_params
-    params.require(:item).permit(:name, :description, :image, :genre_id, :content)
+    params.require(:item).permit(:name, :description, :image, :genre_id)
    end
 
 end

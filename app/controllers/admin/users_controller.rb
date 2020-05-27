@@ -1,13 +1,16 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
-  	@users = User.all
+    @user_true = User.where(is_cancel:false)
+  	@users = User.all.page(params[:page]).per(10)
   	@genres = Genre.all
   end
 
   def show
   	@user = User.find(params[:id])
-    @comments = @user.comments.page(params[:page]).per(3)
-    @items = @user.items.page(params[:page]).per(3)
+    @comments = @user.comments.page(params[:page]).per(10)
+    @items = @user.items.page(params[:page]).per(10)
   end
 
   def edit

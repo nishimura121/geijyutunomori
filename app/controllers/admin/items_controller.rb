@@ -1,5 +1,8 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
+    @item_all = Item.all
     route = Rails.application.routes.recognize_path(request.referer)
     if route == {:controller => "admin/home", :action => "index"}
        @items = Item.page(params[:page]).per(10)
@@ -11,7 +14,7 @@ class Admin::ItemsController < ApplicationController
 
   def show
   	@item = Item.find(params[:id])
-    @comments = @item.comments.page(params[:page]).per(5)
+    @comments = @item.comments.page(params[:page]).per(10)
     impressionist(@item)
   end
 

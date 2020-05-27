@@ -5,6 +5,11 @@
       <h3 class="mb-4">作品新規登録</h3>
     </div>
 
+     <% if @item.errors.any? %>
+      <h4><%= @item.errors.count %>件のエラーがあります（画像、作品名、作品説明は必須です）</h4>
+     <% end %>
+
+
     <%= form_for(@item, url: items_path, method: :post) do |f| %>
     <div class="form-row mb-4">
       <div class="col">
@@ -20,14 +25,12 @@
       <%= f.text_field :name, class:"col-10" %>
     </div>
 
-
     <div class="form-row mb-4">
       <div class="col">
         <%= f.label :description, "作品説明" %>
       </div>
       <%= f.text_area :description, class:"col-10" %>
     </div>
-
 
     <div class="form-row mb-4">
       <div class="col-2">
@@ -36,10 +39,8 @@
       <%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
     </div>
 
-
     <div class="form-row flex-row-reverse">
       <%= f.submit "投稿する", class:"btn btn-info" %>
     </div>
-
     <% end %>
-
+</div>

@@ -1,1 +1,33 @@
 <h3>管理者画面</h3>
+  <p></p>
+
+  <% if count =! nil %>
+	<strong>現在の有効登録者数<%= @user_all.count %>人</strong></br>
+	<strong>現在の総作品数<%= @item_all.count %>件</strong></br>
+	<p></p>
+
+	本日の作品投稿数  <%= @items.count %>件</br>
+	:絵の作品投稿数  <%= @itemsA.count %>件</br>
+	:陶芸の作品投稿数  <%= @itemsB.count %>件</br>
+	:彫刻の作品投稿数  <%= @itemsC.count %>件</br>
+	:工芸の作品投稿数  <%= @itemsD.count %>件</br>
+	:書の作品投稿数  <%= @itemsE.count %>件</p>
+
+	<p>本日のユーザー登録者数  <%= @users.count %>人</p>
+	<p>本日のコメント数  <%= @comments.count %>件</p>
+
+  <% else %>
+	<strong>現在の有効登録者数<%= @user_all.count == 0 %>人</strong></br>
+	<strong>現在の総作品数<%= @item_all.count == 0 %>件</strong></br>
+	<p></p>
+	本日の作品投稿数  <%= @items.count == 0 %>件</br>
+	:絵の作品投稿数  <%= @itemsA.count == 0 %>件</br>
+	:陶芸の作品投稿数  <%= @itemsB.count == 0 %>件</br>
+	:彫刻の作品投稿数  <%= @itemsC.count == 0 %>件</br>
+	:工芸の作品投稿数  <%= @itemsD.count == 0 %>件</br>
+	:書の作品投稿数  <%= @itemsE.count == 0 %>件</p>
+
+	<p>本日のユーザー登録者数  <%= @users.count == 0 %>人</p>
+	<p>本日のコメント数  <%= @comments.count == 0 %>件</p>
+  <% end %>
+

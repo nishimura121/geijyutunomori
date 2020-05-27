@@ -1,99 +1,118 @@
 
-<%= attachment_image_tag @item, :image %>
 
-    <table class="table">
-      <tbody>
+   <div class="container">
+    <div class="row">
 
-<!-- いいね機能 -->
-        <td>いいね<i class="far fa-thumbs-up"></i>
-          <% if @item.favorited_by?(current_user) %>
-            <%= link_to item_favorites_path(@item, redirect_id: 0), method: :delete do %>
-              <%= @item.favorites.count %></i>
-            <% end %>
-          <% else %>
-            <%= link_to item_favorites_path(@item, redirect_id: 0), method: :post do %>
-             <%= @item.favorites.count %>
-            <% end %>
-          <% end %>
-        </td>
+     <div class="col-md-5">
+      <%= attachment_image_tag @item, :image, :fill, 380, 380 %>
+      </div>
 
-
-お気に入り
-<% if user_signed_in? %>
-
-    <% if @item.bookmark_by?(current_user) %>
-      <%= link_to item_bookmarks_path(@item, redirect_id: 0), method: :delete, id:"bookmark-button", remote: true do %>
-        <i class="fas fa-star"></i>
-      <% end %>
-    <% else %>
-      <%= link_to item_bookmarks_path(@item, redirect_id: 0),method: :post, id:"bookmark-button", remote: true do %>
-        <i class="far fa-star"></i>
-      <% end %>
-    <% end %>
-
-<% else %>
-<% end %>
-
-
-
-
+     <div class="col-md-5">
+      <table class="table">
         <tr>
-          <th>作品名</th>
-          <th><%=@item.name %></th>
+          <th class="item_name"><%=@item.name %></th>
+        </tr>
+        <tr style="height:10rem">
+          <td><%=@item.description %></td>
         </tr>
         <tr>
-          <th>作品説明</th>
-          <th><%=@item.description %></th>
+          <th><%= attachment_image_tag @item.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 50px; height: 50px;"  %>
+            <%=link_to @item.user.name, "/users/#{@item.user_id}",style:"text-decoration:none;" %></th>
+        </tr>
+        <tr>
+          <th>視聴者数</th>
+          <th><%= @item.impressionist_count %></th>
         </tr>
         <tr>
           <th>投稿日時</th>
           <th><%= @item.created_at.strftime('%Y/%m/%d %H:%M') %></th>
         </tr>
-        <tr>
-        <th>投稿者</th>
-        <th><%=link_to @item.user.name, "/users/#{@item.user_id}" %></th>
-        </tr>
+      </table>
+     </div>
 
-          <tr>
-          <th>視聴者数</th>
-          <th><%= @item.impressionist_count %></th>
-        </tr>
-
-
-
-
-<small>コメント数：<%= @item.comments.count %>件</small></p>
-
-<% if @item.comments.present? %>
-
-<% @comments.each.with_index(1) do | comment, i| %>
-<tr>
-<td><%= i %></td>
-<td><%= comment.user.name %></td>
-<td><%= comment.content %></td>
-<td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-<% if current_user == comment.user %>
-<td><%= button_to "削除する",item_comments_path(comment.id),method: :delete,data: {confirm: "本当に消しますか？"} %></td>
-<% end %>
-
-<% end %>
-
-
-<% else %>
-現在コメントはありません
-<% end %>
-
-</tr>
-
-          </tbody>
-        </table>
-        <%= paginate @comments %>
-
-
-           <%= form_for @comment,url:item_comments_path(@item) do |f| %>
-                  <%= f.text_area :content %>
-                  <%= f.submit 'レビューする' %>
+     <div class="col-md-3">
+        <!-- いいね機能 -->
+          <td>いいね<i class="far fa-thumbs-up"></i>
+            <% if @item.favorited_by?(current_user) %>
+              <%= link_to item_favorites_path(@item, redirect_id: 0), method: :delete do %>
+              <%= @item.favorites.count %></i>
+              <% end %>
+            <% else %>
+              <%= link_to item_favorites_path(@item, redirect_id: 0), method: :post do %>
+              <%= @item.favorites.count %>
+              <% end %>
             <% end %>
+          </td>
+
+        <!-- お気に入り機能 -->
+        お気に入り
+            <% if @item.bookmark_by?(current_user) %>
+              <%= link_to item_bookmarks_path(@item, redirect_id: 0), method: :delete do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+            <% else %>
+              <%= link_to item_bookmarks_path(@item, redirect_id: 0),method: :post do %>
+                <i class="far fa-star"></i>
+              <% end %>
+            <% end %>
+     </div>
+
+    <div class="row ml-3 mt-3">
+      <small>コメント数：<%= @item.comments.count %>件</small></p>
+      <% if @item.comments.present? %>
+        <% @comments.each do | comment | %>
+        <table class="table">
+        <tr>
+          <td style="width: 20%">
+            <%= attachment_image_tag comment.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 50px; height: 50px;"  %>
+            <%= comment.user.name %></td>
+          <td style="width: 50%;"><%= comment.content %></td>
+          <td style="width: 20%;"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+
+        <% if current_user == comment.user %>
+          <td style="width: 10%;"><%= button_to "削除する",item_comments_path(comment.id),method: :delete,data: {confirm: "本当に消しますか？"} %>
+          </td>
+          <% else %>
+          <td style="width: 10%;"></td>
+        <% end %>
+        </tr>
+        </table>
+
+       <% end %>
+
+      <% else %>
+       現在コメントはありません
+      <% end %>
+
+        <%= paginate @comments %>
+           <%= form_for @comment,url:item_comments_path(@item) do |f| %>
+              <%= f.text_area :content %>
+              <%= f.submit 'レビューする', class: "button is-info is-pulled-right" %>
+           <% end %>
+    </div>
+
+    </div>
+  </div>
+
+
+
+<style>
+.table tr th{
+ border: none;
+}
+.table tr td{
+ border: none;
+}
+textarea {
+ resize: none;
+ width:28rem;
+ height:13rem;
+}
+.item_name{
+  font-size:20px;
+}
+
+</style>
 
 
 

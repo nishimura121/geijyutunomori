@@ -1,10 +1,20 @@
+
+
 <div class="row">
   <div class="col-xl-7">
     <div style="min-height: 8vh;">
       <h3 class="mb-4">会員編集</h3>
     </div>
 
+      <% if @user.errors.any? %>
+       <h4><%= @user.errors.count %>件のエラーがあります（氏名、メールアドレス、年齢は必須です）</h4>
+      <% end %>
+
     <%= form_for(@user ,url:user_path(@user)) do |f| %>
+    <div class="form-group row">
+      <div class="col-sm-3 col-form-label">プロフィール画像</div>
+      <%= f.attachment_field :profile_image, class:"col-sm-6" %>
+　　</div>
     <div class="form-group row">
       <%= f.label :name, "氏名", class:"col-sm-3 col-form-label" %>
       <%= f.text_field :name, value:"#{@user.name}",class:"col-sm-4" %>
@@ -32,7 +42,7 @@
 
     <div class="form-group row">
       <%= f.label :sns_address, "SNS", class:"col-sm-3 col-form-label" %>
-      <%= f.email_field :sns_address, value:"#{@user.sns_address}", class:"col-sm-9" %>
+      <%= f.text_field :sns_address, value:"#{@user.sns_address}", class:"col-sm-9" %>
     </div>
 
     <div class="form-group row">
@@ -47,10 +57,8 @@
     <% end %>
   </div>
 </div>
-<div class="text-right">
-<p><%= link_to "退会する", cancels_users_path, class:"btn btn-danger text-white",style:"text-decoration:none; font-size:12px;" %></p>
-</div>
 
-
-
+ <div class="text-right">
+  <p><%= link_to "退会する", cancels_users_path, class:"btn btn-danger text-white",style:"text-decoration:none; font-size:12px;" %></p>
+ </div>
 

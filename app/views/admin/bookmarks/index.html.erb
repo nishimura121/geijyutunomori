@@ -1,5 +1,6 @@
 
-<p>お気に入りリスト</p>
+<% if @bookmarks.present? %>
+ <p>お気に入りリスト(全<%= @bookmarks.count %>件)</p>
   <table>
     <tr>
     <td></td>
@@ -9,14 +10,8 @@
     <td></td>
     </tr>
 
-  <% if @bookmarks.present? %>
     <% @bookmarks.each.with_index(1) do | bookmark, i| %>
       <tr>
-        <% if params[:page].nil? %>
-        <td><%= i %></td>
-        <% else %>
-        <td><%= i + (params[:page].to_i - 1) * 10 %></td>
-        <% end %>
         <td><%= link_to  admin_item_path(bookmark.item) do %>
             <%= attachment_image_tag bookmark.item, :image, :fill, 180, 180 %></td>
               <% end %>

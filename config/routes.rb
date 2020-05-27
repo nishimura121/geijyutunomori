@@ -23,8 +23,8 @@ Rails.application.routes.draw do
       resources :bookmarks, only: [:index]
       resource :relationships, only: [:create, :destroy]
         member do
-          get 'follows' => 'relationships#follower', as: 'follows'
-          get 'followers' => 'relationships#followed', as: 'followers'
+          get 'follows' => 'relationships#followed', as: 'follows'
+          get 'followers' => 'relationships#follower', as: 'followers'
         end
       end
     root 'home#index'

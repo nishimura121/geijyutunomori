@@ -1,4 +1,4 @@
-<h3>投稿作品一覧</h3>
+<h3>投稿作品一覧(全<%= @item_all.count %>件)</h3>
 
 
  <table class="table table=striped">
@@ -17,21 +17,15 @@
             </div>
           <% end %></th>
     </tr>
-  <% @items.each.each.with_index(1) do | item, i | %>
+  <% @items.each.each do | item | %>
       <tr>
-      	<td>
-          <% if params[:page].nil? %>
-            <%= i %>
-          <% else %>
-            <%= i + (params[:page].to_i - 1) * 10 %>
-          <% end %>
-        </td>
+      	<td><%= item.id %></td>
         <td><%= item.created_at.strftime('%Y/%m/%d %H:%M') %></td>
         <td><%= link_to admin_item_path(item) do %>
           <%= attachment_image_tag item, :image, :fill, 150, 150 %></td>
           <% end %>
-          <td><%= link_to item.user.name, "/admin/users/#{item.user.id}" %></td>
-        <td> <%= link_to item.name,admin_item_path(item) %> </td>
+          <td><%= link_to item.user.name, "/admin/users/#{item.user.id}",style:"text-decoration:none;" %></td>
+        <td> <%= link_to item.name,admin_item_path(item),style:"text-decoration:none;" %> </td>
         <td>お気に入り数<%= item.bookmarks.count %></br>
         視聴者数<%= item.impressionist_count %><br>
         コメント数<%= item.comments.count %>

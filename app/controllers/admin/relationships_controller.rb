@@ -1,4 +1,6 @@
 class Admin::RelationshipsController < ApplicationController
+  before_action :authenticate_admin!
+
   def create
     current_user.follow(params[:user_id])
     redirect_to request.referer
@@ -11,11 +13,11 @@ class Admin::RelationshipsController < ApplicationController
 
   def follower
     user = User.find(params[:id])
-    @users = user.following_user.page(params[:page]).per(2)
+    @users = user.following_user.page(params[:page]).per(10)
   end
 
   def followed
     user = User.find(params[:id])
-    @users = user.follower_user.page(params[:page]).per(2)
+    @users = user.follower_user.page(params[:page]).per(10)
   end
 end

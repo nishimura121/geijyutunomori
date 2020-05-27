@@ -2,7 +2,7 @@
 <%= form_for(@item , url: admin_item_path(@item)) do |f| %>
       <div class="row">
         <div class="col-md-4">
-          <%= attachment_image_tag @item, :image %>
+          <%= attachment_image_tag @item, :image,:fill,300,300 %>
           <%= f.attachment_field :image, class:"mt-4" %>
         </div>
         <div class="col-md-8">

@@ -1,4 +1,6 @@
 class User::BookmarksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @bookmarks = User.find(params[:user_id]).bookmarks.page(params[:page]).per(10)
    end

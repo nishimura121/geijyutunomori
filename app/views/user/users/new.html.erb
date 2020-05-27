@@ -4,35 +4,35 @@
     <div class="card-body">
         <h3 class="card-text3 text-center">
             <%=link_to "絵",items_path(genre_id:1), class: "stretched-link",style:"text-decoration:none;" %></h3>
-      </div>
+    </div>
 </div>
 
 <div class="card m-1 d-inline-block col mb-3"style="background-image: url('/assets/top2.jpg'); background-position: center;">
     <div class="card-body">
         <h3 class="card-text3 text-center">
             <%=link_to "陶芸",items_path(genre_id:2), class: "stretched-link",style:"text-decoration:none;" %></h3>
-      </div>
+    </div>
 </div>
 
 <div class="card m-1 d-inline-block col mb-3"style="background-image: url('/assets/top3.jpg'); background-position: center;">
     <div class="card-body">
         <h3 class="card-text3 text-center">
             <%=link_to "彫刻",items_path(genre_id:3), class: "stretched-link",style:"text-decoration:none;" %></h3>
-      </div>
+    </div>
 </div>
 
 <div class="card m-1 d-inline-block col mb-3"style="background-image: url('/assets/top4.jpg'); background-position: center;">
     <div class="card-body">
         <h3 class="card-text3 text-center">
             <%=link_to "工芸",items_path(genre_id:4), class: "stretched-link",style:"text-decoration:none;" %></h3>
-      </div>
+    </div>
 </div>
 
 <div class="card m-1 d-inline-block col mb-3"style="background-image: url('/assets/top5.jpg'); background-position: center;">
     <div class="card-body">
         <h3 class="card-text3 text-center">
             <%=link_to "書",items_path(genre_id:5), class: "stretched-link",style:"text-decoration:none;" %></h3>
-      </div>
+    </div>
 </div>
 
 
@@ -42,11 +42,44 @@
 <style>
 
 .stretched-link::after{
-  position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:auto;content:"";background-color:rgba(0,0,0,0)
+ position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:auto;content:"";background-color:rgba(0,0,0,0)
 }
 h3{
-  font-family: ＭＳ Ｐ明朝;
+ font-family: HiraMinProN-W3;
 }
+
+.card-body{
+  height: 120px;
+  position: relative; /*中央揃えしたい要素の親要素に指定*/
+
+}
+
+.card-text3 text-center{
+  position: absolute;
+  top: 50%; /*親要素を起点に上から50%*/
+  left: 50%;  /*親要素を起点に左から50%*/
+  transform: translateY(-50%) translateX(-50%); /*要素の大きさの半分ずつを戻す*/
+  -webkit-transform: translateY(-50%) translateX(-50%);
+
+}
+
+
+.card {
+  background: #ff006a;
+  color: #fff;
+  transition: all .5s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+  opacity: 0.7;
+}
+
+
+
+
+
+
 
 </style>
 

@@ -1,158 +1,142 @@
-<div class="card mb-3 text-center float-right" style="width:10rem; height:2rem;border:3px solid#808000;">
-            <div class="font0">
-            <i class="fas fa-crown"><%=link_to "ランキング",ranking_items_path(genre_id: @genre.id), class: "stretched-link",style:"text-decoration:none;" %></i>
-          </div>
-</div>
+    <div class="card mb-3 text-center float-right" style="width:10rem; height:2rem;border:3px solid#808000;">
+      <div class="font0">
+       <i class="fas fa-crown"><%=link_to "ランキング",ranking_items_path(genre_id: @genre.id), class: "stretched-link",style:"text-decoration:none;" %></i>
+      </div>
+    </div>
+
+    <div class="card mb-5" style="width: 16rem; border:2px solid #9acd32;">
+      <div class="font1">
+        <%= @genre.name %>
+      </div>
+    </div>
 
 
+    <div class="container">
+      <div class="row">
 
-<div class="card mb-5" style="width: 16rem; border:2px solid #b8860b;">
-  <div class="font1">
-<%= @genre.name %>
-</div>
-</div>
-
-
-
-<div class="container">
-  <div class="row">
-<div class="card col-md-3 text-center">
-
-
-<p2>
-<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 100px; height: 100px;"  %>
-</p2>
-
-<table>
-     <p><tr><strong><%= @user.name %></strong></tr></p>
-     <p><tr><% if @user.self_introduction.present? %>
-      <%= @user.self_introduction %></tr></p>
-      <% else %>
-      <p>自己紹介はまだありません。</p>
-      <% end %>
-
-      <tr>
-        <th>レベル</th>
-        <th><%= @user.level %></th>
-      </tr>
-      <tr>
-        <th>フォロー数</th>
-          <th><%= link_to @user.follower.count, follows_user_path(@user) %></th>
-        </tr>
-        <tr>
-          <th>フォロワー数</th>
-          <th><%= link_to @user.followed.count, followers_user_path(@user) %></th>
-        </tr>
-        <tr>
-          <th>お気に入り</th>
-          <th><%= link_to  icon('far', 'star'),user_bookmarks_path(@user) %></th>
-        </tr>
-      </table>
-</div>
-
-
-
-
-
-      <div class="col-md-9 mt-2">
-        <% @items.each do | item | %>
-          <div class="row no-gutters">
-            <div class="d-flex col-xl border-bottom">
-              <div class="p-2 mr-3" style="width: 280px; height:180px" >
-                <%= link_to item_path(item) do %>
-            <%= attachment_image_tag item,:image, :fill, 270, 270 %></td>
-            <% end %>
-              </div>
-              <div class="p-5">
-                <p class="mb-1">
-                  <strong>
-                    <%= link_to item.name, item_path(item) %>
-                  </strong>
-
-                <p class="ml-auto mb-5">
-                  <span>
-                    <%= item.description %>
-                  </span>
-                </p>
-
-             <p class="mb-1">
-                  <% if user_signed_in? %>
-
-              <% if item.bookmark_by?(current_user) %>
-                <%= link_to item_bookmarks_path(item, redirect_id: 0), method: :delete, id:"bookmark-button", remote: true do %>
-                  <i class="fas fa-star"></i>
-                <% end %>
+       <div class="col-md-3">
+        <div class="card text-center" style="border:2px solid #dcdcdc;">
+          <div class="card-body">
+            <div class="card-title">
+             <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 100px; height: 100px;" %>
+            </div>
+            <div class="card-text">
+             <p><%= @user.name %></p>
+             <p class="intro">
+             <% if @user.self_introduction.present? %>
+               <%= @user.self_introduction %>
               <% else %>
-                <%= link_to item_bookmarks_path(item, redirect_id: 0),method: :post, id:"bookmark-button", remote: true do %>
-                  <i class="far fa-star"></i>
-                <% end %>
+               自己紹介はまだありません。
               <% end %>
-
-              <% else %>
-              <% end %>
-              </p>
-
-
-                <p class="mb-0">
-                    視聴者数:<%= item.impressionist_count %>
-                </p>
-
-                <p class="mb-0">
-                    コメント数:<%= item.comments.count %>
-                </p>
-                <p class="mb-0">
-                    投稿:<%= item.created_at.strftime('%Y/%m/%d %H:%M') %>
-                </p>
-
-
-              </div>
+            </p>
+             <p class="foot" style="margin-top:25px;">
+              レベル
+              <%= @user.level %></br>
+              フォロー数
+              <%= link_to @user.follower.count, follows_user_path(@user),style:"text-decoration:none;" %></br>
+              フォロワー数
+              <%= link_to @user.followed.count, followers_user_path(@user),style:"text-decoration:none;" %></br>
+              お気に入り<%= link_to  icon('far', 'star'),user_bookmarks_path(@user) %></br>
             </div>
           </div>
-        <% end %>
+        </div>
+      </div>
 
-<div class="bottom">
-       <%= paginate @items %>
+        <div class="col-md-9 mt-1">
+          <% @items.each do | item | %>
+            <div class="row no-gutters">
+              <div class="d-flex col-xl border-bottom">
+                <div class="p-2 mr-3" style="width: 280px; height:180px" >
+                  <%= link_to item_path(item) do %>
+                    <%= attachment_image_tag item,:image, :fill, 250, 250 %></td>
+                  <% end %>
+                </div>
+                <div class="p-4">
+                  <p class="mb-2">
+                    <strong>
+                      <%= link_to item.name, item_path(item),style:"text-decoration:none;" %>
+                    </strong>
+                  </p>
+                  <p class="ml-auto mb-5">
+                    <span>
+                      <% if item.user.profile_image.present? %>
+                      <%= attachment_image_tag item.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 50px; height: 50px;"  %>
+                      <% end %>
+                    </span>
+                    <%=link_to item.user.name, user_path(item.user),style:"text-decoration:none;" %>
+
+                  </p>
+
+                  <p class="mb-1">
+                   <% if user_signed_in? %>
+                    <% if item.bookmark_by?(current_user) %>
+                      <%= link_to item_bookmarks_path(item, redirect_id: 0), method: :delete do %>
+                        <i class="fas fa-star"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to item_bookmarks_path(item, redirect_id: 0),method: :post do %>
+                        <i class="far fa-star"></i>
+                      <% end %>
+                    <% end %>
+                   <% else %>
+                   <% end %>
+                  </p>
+
+                  <p class="mb-0">
+                      視聴者数:<%= item.impressionist_count %>
+                  </p>
+                  <p class="mb-0">
+                      コメント数:<%= item.comments.count %>
+                  </p>
+                  <p class="mb-0">
+                      投稿:<%= item.created_at.strftime('%Y/%m/%d %H:%M') %>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          <% end %>
+       <div class="bottom">
+        <%= paginate @items %>
+       </div>
+       </div>
+      </div>
     </div>
-    </div>
-  </div>
-</div>
 
 
 <style>
 .font1{
-  font-family: serif;
-  text-align:center;
-  font-size:2rem;
-  color:#669900;
+ font-family: serif;
+ text-align:center;
+ font-size:2rem;
+ color:#669900;
 }
 
 p2{
-  margin:1.3rem;
+ margin:1.3rem;
 }
  .card th{
  padding:0.3rem;
 }
-.card col-md-3{
-  align-items: baseline;
-}
 
 .card mb-3{
-  text-align:center;
+ text-align:center;
 }
 
 .bottom{
-float: right;
-padding-top:20px;
-
+ float: right;
+ padding-top:20px;
 }
 
 .font0{
-  font-size:1.1rem;
+ font-size:1.1rem;
 }
 
 .stretched-link::after{
-  position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:auto;content:"";background-color:rgba(0,0,0,0)
+ position:absolute;top:0;right:0;bottom:0;left:0;z-index:1;pointer-events:auto;content:"";background-color:rgba(0,0,0,0)
 }
-
+.intro{
+  white-space: pre-line;
+}
 
 </style>

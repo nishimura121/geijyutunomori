@@ -1,30 +1,51 @@
+
+<div class="top">
 <i class="fas fa-crown">ランキング</i>
+</div>
 
 
-<% @genres.each do |genre| %>
-      <%= link_to ranking_items_path(genre_id: genre.id) do %>
-          <%= genre.name %>
-<% end %>
-<% end %>
+<%= link_to "絵",ranking_items_path(genre_id:1),class:"btn btn-outline-success",style:"margin-right:10px;" %>
+<%= link_to "陶芸",ranking_items_path(genre_id:2),class:"btn btn-outline-success",style:"margin-right:10px;" %>
+<%= link_to "彫刻",ranking_items_path(genre_id:3),class:"btn btn-outline-success",style:"margin-right:10px;" %>
+<%= link_to "工芸",ranking_items_path(genre_id:4),class:"btn btn-outline-success",style:"margin-right:10px;" %>
+<%= link_to "書",ranking_items_path(genre_id:5),class:"btn btn-outline-success",style:"margin-right:10px;" %>
 
 
-<table>
-<% if @items.present? %>
-    <% @items.each.with_index(1) do | item, i| %>
-  <tr>
-      <td><%= i %></td>
-      <td><%= link_to item_path(item) do %>
-          <%= attachment_image_tag item, :image, :fill, 180, 180 %></td>
-            <% end %>
-       <td><%= link_to item.name,item_path(item) %></td>
-       <td><%= link_to item.user.name,user_path(item.user) %></td>
 
-  </tr>
-    <% end %>
-<% else %>
-投稿作品は現在ありません
-<% end %>
-</table>
+
+
+  <% if @items.present? %>
+    <div class="card mt-2">
+      <table class="table">
+          <% @items.each.with_index(1) do | item, i| %>
+           <tr>
+            <td style="width: 10%;"><%= i %>位</td>
+            <td style="width: 10%;"><%= link_to item_path(item) do %>
+                <%= attachment_image_tag item, :image, :fill, 180, 180 %></td>
+                  <% end %>
+            <td style="width: 25%;"><%= link_to item.name,item_path(item),style:"text-decoration:none;" %></td>
+            <td style="width: 55%;"><%= attachment_image_tag item.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", style: "width: 50px; height: 50px;" %>
+              <%= link_to item.user.name,user_path(item.user),style:"text-decoration:none;" %></td>
+           </tr>
+          <% end %>
+      </table>
+    </div>
+
+  <% else %>
+   <div class="nil"style="margin-top:40px;">投稿作品は現在ありません</div>
+  <% end %>
+
+
+<style>
+.top{
+  margin-bottom:2rem;
+}
+
+
+</style>
+
+
+
 
 
 

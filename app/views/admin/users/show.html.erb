@@ -48,13 +48,9 @@
     	<td>SNS</td>
     	<td><%= @user.sns_address %></td>
     </tr>
-    <tr>
+    <tr class="intro">
     	<td vAlign=top>自己紹介</td>
-      <% if @user.self_introduction.present? %>
     	<td vh=30><%= @user.self_introduction %></td>
-      <% else %>
-      <% end %>
-      <td></td>
     </tr>
     <tr>
     	<td>レベル</td>
@@ -62,20 +58,20 @@
     </tr>
     <tr>
     	<td>フォロー数</td>
-    	<td><%= link_to @user.follower.count, follows_admin_user_path(@user) %></td>
+    	<td><%= link_to @user.followed.count, follows_admin_user_path(@user),style:"text-decoration:none;" %></td>
     </tr>
     <tr>
     	<td>フォロワー数</td>
-    	<td><%= link_to @user.followed.count, followers_admin_user_path(@user) %></td>
+    	<td><%= link_to @user.follower.count, followers_admin_user_path(@user),style:"text-decoration:none;" %></td>
     </tr>
     <tr>
     	<td>お気に入り</td>
-    	<td><%= link_to @user.bookmarks.count, admin_user_bookmarks_path(@user) %></td>
+    	<td><%= link_to @user.bookmarks.count, admin_user_bookmarks_path(@user),style:"text-decoration:none;" %></td>
     </tr>
   </table>
 
-  <div class="m-4">
-   <%= link_to '会員編集する',edit_admin_user_path(@user) %>
+  <div class="m-4 text-right">
+   <%= link_to '会員編集する',edit_admin_user_path(@user),class:"btn btn-outline-primary",style:"text-decoration:none;" %>
   </div>
 
 </div>
@@ -99,10 +95,10 @@
     		      </td>
     		    <% end %>
     		   <td align=left>
-    		    <%= link_to item.name,admin_item_path(item) %>
+    		    <%= link_to item.name,admin_item_path(item),style:"text-decoration:none;" %>
     		   </td>
     		   <td align=left>
-    		    <%= link_to '投稿作品編集',edit_admin_item_path(item) %>
+    		    <%= link_to '投稿作品編集',edit_admin_item_path(item),class:"btn btn-outline-primary",style:"text-decoration:none;" %>
     		   </td>
     		</tr>
          <% end %>
@@ -118,7 +114,6 @@
   コメント一覧(<%= @user.comments.count %>)
     <table>
     	<th>
-    	<td>ID</td>
     	<td>コメント内容</td>
     	<td>作品名</td>
     	<td>投稿日時</td>
@@ -126,7 +121,7 @@
     <% @comments.each.with_index(1) do | comment, i| %>
 
     	<tr>
-    	<td><td><%= i %></td></td>
+    	<td></td>
     	<td><%= comment.content %></td>
     	<td><%= comment.item.name %></td>
     	<td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
@@ -137,6 +132,9 @@
 	 <%= paginate @comments %>
 </div>
 
-
-
+<style>
+.intro{
+  white-space: pre-line;
+}
+</style>
 

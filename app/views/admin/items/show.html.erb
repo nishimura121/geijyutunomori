@@ -1,11 +1,10 @@
-<h3>作品詳細</h3>
 
 
 <div class = "container">
 
 <div class = "row">
    <div class="col-xl-4">
-    <%= attachment_image_tag @item, :image %>
+    <%= attachment_image_tag @item, :image,:fill, 320,320 %>
    </div>
 
    <div class="col-xl-8">
@@ -24,11 +23,15 @@
         </tr>
         <tr>
           <th>投稿者</th>
-          <th><%=link_to @item.user.name, "/admin/users/#{@item.user_id}" %></th>
+          <th><%=link_to @item.user.name, "/admin/users/#{@item.user_id}",style:"text-decoration:none;" %></th>
         </tr>
         <tr>
           <th>視聴者数</th>
           <th><%= @item.impressionist_count %></th>
+        </tr>
+        </tr>
+        <tr>
+          <th><%= link_to '作品編集',edit_admin_item_path(@item),class:"btn btn-outline-primary",style:"text-decoration:none;" %></th>
         </tr>
     </table>
   </div>
@@ -41,16 +44,14 @@
 
   <table class="mt-5 mb-5">
     <tr>
-      <th>ID</th>
       <th>投稿日時</th>
       <th>コメントした人</th>
       <th>コメント内容</th>
     </tr>
-    <% if @item.comments.present? %>
-     <% @item.comments.each.with_index(1) do | comment, i| %>
+    <% if @comments.present? %>
+     <% @comments.each do | comment | %>
 
       <tr>
-        <td><%= i %></td>
         <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
         <td align=center><%= comment.user.name %></td>
         <td style="width=100px"><%= comment.content %></td>
