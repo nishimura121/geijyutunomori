@@ -21,7 +21,9 @@ class Admin::ItemsController < ApplicationController
   def destroy
   	@item = Item.find(params[:id])
     if @item.destroy
-      redirect_to admin_user_path(current_user)
+      redirect_to "/admin/users/#{@item.user_id}"
+    else
+      render action: :edit
     end
   end
 

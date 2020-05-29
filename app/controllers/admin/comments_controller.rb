@@ -3,7 +3,10 @@ class Admin::CommentsController < ApplicationController
 
   def destroy
   	comment = Comment.find(params[:item_id])
-    comment.destroy
-    redirect_back(fallback_location: root_path)
+    if comment.destroy
+    redirect_to admin_item_path
+    else
+    render action: :show
+    end
   end
 end
