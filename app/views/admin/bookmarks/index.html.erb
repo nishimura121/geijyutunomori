@@ -2,13 +2,6 @@
 <% if @bookmarks.present? %>
  <p>お気に入りリスト(全<%= @bookmarks.count %>件)</p>
   <table>
-    <tr>
-    <td></td>
-    <td></td>
-    <td align=center>作品名</td>
-    <td align=center>投稿者名</td>
-    <td></td>
-    </tr>
 
     <% @bookmarks.each.with_index(1) do | bookmark, i| %>
       <tr>
