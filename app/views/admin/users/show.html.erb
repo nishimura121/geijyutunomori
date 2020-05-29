@@ -58,11 +58,11 @@
     </tr>
     <tr>
     	<td>フォロー数</td>
-    	<td><%= link_to @user.followed.count, follows_admin_user_path(@user),style:"text-decoration:none;" %></td>
+    	<td><%= link_to @user.follower.count, followers_admin_user_path(@user),style:"text-decoration:none;" %></td>
     </tr>
     <tr>
     	<td>フォロワー数</td>
-    	<td><%= link_to @user.follower.count, followers_admin_user_path(@user),style:"text-decoration:none;" %></td>
+    	<td><%= link_to @user.followed.count, follows_admin_user_path(@user),style:"text-decoration:none;" %></td>
     </tr>
     <tr>
     	<td>お気に入り</td>
