@@ -33,9 +33,11 @@
     <div class="mb-1">
       <%= @user.prefecture %>
     </div>
+    <% if current_user == @user %>
     <div class="mb-1">
       <%= @user.email %>
     </div>
+    <% end %>
     <div class="mb-1">
       HP:<%= @user.hp_address %>
     </div>
