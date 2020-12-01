@@ -70,7 +70,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem "refile", github: 'refile/refile', require: "refile/rails"
 gem "refile-mini_magick", github: 'refile/refile-mini_magick'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'kaminari'
 gem 'jquery-rails'
 gem 'pry-rails'
